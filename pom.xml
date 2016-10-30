@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.cerc</groupId>
-	<artifactId>jbean</artifactId>
-	<version>1.2.2</version>
+	<artifactId>summer-bean</artifactId>
+	<version>1.0.0</version>
 	<name>java bean utils</name>
 	<build>
 		<plugins>
@@ -81,7 +81,7 @@
 		<testOutputDirectory>target/test-classes</testOutputDirectory>
 	</build>
 	<properties>
-		<cn.cerc.lib.version>1.2.2</cn.cerc.lib.version>
+		<cn.cerc.summer.version>1.0.0</cn.cerc.summer.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -98,8 +98,8 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.cerc</groupId>
-			<artifactId>jdb</artifactId>
-			<version>${cn.cerc.lib.version}</version>
+			<artifactId>summer-db</artifactId>
+			<version>${cn.cerc.summer.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -141,4 +141,5 @@
 		</plugins>
 	</reporting>
 	<description>提供CustomBean，简化业务逻辑编写，功能类同 EJB</description>
+	<url>https://github.com/cn-cerc/summer-bean</url>
 </project>
