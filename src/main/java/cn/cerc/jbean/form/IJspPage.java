@@ -11,11 +11,8 @@ public interface IJspPage extends IPage {
 
 	public void setMessage(String message);
 
-	public void setFile(String jspFile);
-
 	// 返回带设备码的jsp文件
 	public String getViewFile();
-	
 
 	// 从请求或缓存读取数据
 	default public String getValue(MemoryBuffer buff, String reqKey) {
