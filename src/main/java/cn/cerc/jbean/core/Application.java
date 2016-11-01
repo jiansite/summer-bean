@@ -7,8 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import cn.cerc.jbean.form.IForm;
-import cn.cerc.jbean.form.IJspPage;
-import cn.cerc.jbean.form.IMainForm;
 import cn.cerc.jdb.cache.CacheConnection;
 import cn.cerc.jdb.cache.IMemcache;
 import cn.cerc.jdb.core.IHandle;
@@ -115,16 +113,6 @@ public class Application {
 
 		CacheConnection conn = app.getBean("CacheConnection", CacheConnection.class);
 		return conn.getSession();
-	}
-
-	public static IMainForm getMainPage() {
-		init();
-		return app.getBean("MainPage", IMainForm.class);
-	}
-
-	public static IJspPage getChildPage() {
-		init();
-		return app.getBean("ChildPage", IJspPage.class);
 	}
 
 	public static void main(String[] args) {
