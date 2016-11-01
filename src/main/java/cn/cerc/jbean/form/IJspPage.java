@@ -12,9 +12,4 @@ public interface IJspPage extends IPage {
 
 	// 返回带设备码的jsp文件
 	public String getViewFile();
-
-	// 此函数为兼容老的写法，后续不再使用!
-	default public IJspPage getPage() {
-		return this;
-	}
 }
