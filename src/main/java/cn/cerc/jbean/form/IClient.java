@@ -1,13 +1,11 @@
 package cn.cerc.jbean.form;
 
-import javax.servlet.http.HttpServletRequest;
-
 public interface IClient {
 
-	public void setRequest(HttpServletRequest request);
+	public void setForm(IForm form);
 
-	public HttpServletRequest getRequest();
-
+	public IForm getForm();
+	
 	public boolean isPhone();
 
 	// 返回设备Id
