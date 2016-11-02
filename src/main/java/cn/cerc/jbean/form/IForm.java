@@ -28,6 +28,12 @@ public interface IForm {
 	// 取得访问设备讯息
 	public IClient getClient();
 
+	// 取得菜单定义
+	public IMenu getMenu();
+
+	// 设置菜单定义
+	public void setMenu(IMenu menu);
+
 	// 设置参数
 	public void setParam(String key, String value);
 
