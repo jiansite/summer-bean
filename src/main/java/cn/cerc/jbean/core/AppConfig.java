@@ -64,7 +64,7 @@ public class AppConfig {
 	 * @return 出错时要显示的 jsp 文件
 	 */
 	public String getJspErrorFile() {
-		return getParam("jspErrorFile", "/WEB-INF/forms/common/error.jsp");
+		return getParam("jspErrorFile", "common/error.jsp");
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class AppConfig {
 	 * @return 在需要用户输入帐号、密码进行登录时的显示
 	 */
 	public String getJspLoginFile() {
-		return getParam("jspLoginFile", "/WEB-INF/forms/common/login.jsp");
+		return getParam("jspLoginFile", "common/login.jsp");
 	}
 
 	public String getParam(String key, String def) {
