@@ -9,6 +9,7 @@ import cn.cerc.jdb.mysql.BatchScript;
 
 public class HistoryRecord {
 	private IHandle handle;
+	private String corpNo;
 	private StringBuffer content = new StringBuffer();
 	private HistoryLevel level = HistoryLevel.General;
 
@@ -21,6 +22,15 @@ public class HistoryRecord {
 
 	public IHandle getHandle() {
 		return handle;
+	}
+
+	public String getCorpNo() {
+		return corpNo;
+	}
+
+	public HistoryRecord setCorpNo(String corpNo) {
+		this.corpNo = corpNo;
+		return this;
 	}
 
 	public HistoryLevel getLevel() {
@@ -46,7 +56,12 @@ public class HistoryRecord {
 	}
 
 	public void save(IHandle handle) {
-		String corpNo = handle.getCorpNo();
+		String corpNo = !"".equals(handle.getCorpNo()) ? handle.getCorpNo() : getCorpNo();
+
+		if (corpNo == null || "".equals(corpNo)) {
+			throw new RuntimeException("生成日志时，公司编号不允许为空！");
+		}
+
 		String userCode = handle.getUserCode();
 		String log = content.toString();
 		int mth = 0;
@@ -69,7 +84,8 @@ public class HistoryRecord {
 		}
 		BatchScript bs = new BatchScript(handle);
 		bs.add("insert into %s (CorpNo_,Level_,Log_,AppUser_,UpdateKey_) values (N'%s',%d,N'%s',N'%s',N'%s')",
-				SystemTable.get(SystemTable.getUserLogs), corpNo, mth, safeString(copy(log, 1, 80)), userCode, newGuid());
+				SystemTable.get(SystemTable.getUserLogs), corpNo, mth, safeString(copy(log, 1, 80)), userCode,
+				newGuid());
 		bs.exec();
 	}
 }
