@@ -9,7 +9,6 @@ import cn.cerc.jdb.mysql.BatchScript;
 
 public class HistoryRecord {
 	private IHandle handle;
-	private String corpNo;
 	private StringBuffer content = new StringBuffer();
 	private HistoryLevel level = HistoryLevel.General;
 
@@ -22,15 +21,6 @@ public class HistoryRecord {
 
 	public IHandle getHandle() {
 		return handle;
-	}
-
-	public String getCorpNo() {
-		return corpNo;
-	}
-
-	public HistoryRecord setCorpNo(String corpNo) {
-		this.corpNo = corpNo;
-		return this;
 	}
 
 	public HistoryLevel getLevel() {
@@ -56,8 +46,7 @@ public class HistoryRecord {
 	}
 
 	public void save(IHandle handle) {
-		String corpNo = !"".equals(handle.getCorpNo()) ? handle.getCorpNo() : getCorpNo();
-
+		String corpNo = handle.getCorpNo();
 		if (corpNo == null || "".equals(corpNo)) {
 			throw new RuntimeException("生成日志时，公司编号不允许为空！");
 		}
