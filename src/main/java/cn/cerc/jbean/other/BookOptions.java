@@ -19,6 +19,7 @@ public class BookOptions {
 	public static final String AllowERPSynchro = "AllowERPSynchro";
 	public static final String AllowScanBCMode = "AllowScanBCMode";
 	public static final String ZZTPY_VERSION = "ZZTPY_VERSION";
+	public static final String AllowMallShare = "AllowMallShare";
 	public static final String SenderInfo = "SenderInfo";
 	public static final String Report = "Report";
 	// public static final String ERPSalesDeptCode = "ERPSalesDeptCode";
@@ -179,7 +180,8 @@ public class BookOptions {
 		items.put(EnablePrintPartCode, "在打印报表时是否打印商品编号");
 
 		// 其它参数
-		items.put("ZZTPY_VERSION", "启动【郑州太平洋】专用功能项");
+		items.put(ZZTPY_VERSION, "启动【郑州太平洋】专用功能项");
+		items.put(AllowMallShare, "是否开放在线商城（允许所有人查看本公司商品信息）");
 	}
 
 	public BookOptions(IHandle handle) {
