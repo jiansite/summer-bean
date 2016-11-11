@@ -13,4 +13,7 @@ public interface IClient {
 
 	// 返回设备型号
 	public String getDevice();
+	
+	//设置设备型号
+	public void setDevice(String device);
 }
