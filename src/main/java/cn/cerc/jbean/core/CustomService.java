@@ -85,9 +85,13 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 			long startTime = System.currentTimeMillis();
 			try {
 				// 执行具体的服务函数
-				ss.setResult((Boolean) mt.invoke(this));
-				ss.setMessage(this.getMessage());
-				return ss;
+				if (mt.getParameterCount() == 0) {
+					ss.setResult((Boolean) mt.invoke(this));
+					ss.setMessage(this.getMessage());
+					return ss;
+				} else {
+					return (IStatus) mt.invoke(this, dataIn, dataOut);
+				}
 			} finally {
 				if (dataOut != null)
 					dataOut.first();
