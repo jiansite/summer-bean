@@ -57,11 +57,11 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 			throw new RuntimeException("funcCode is null");
 		this.dataIn = dataIn;
 		this.dataOut = dataOut;
-		boolean result =  this.exec(this.funcCode);
-		return new ServiceStatus(result, this.getMessage());
+		return this.exec(this.funcCode);
 	}
 
-	public boolean exec(String func) {
+	public IStatus exec(String func) {
+		ServiceStatus ss = new ServiceStatus(false);
 		Class<?> self = this.getClass();
 		Method mt = null;
 		for (Method item : self.getMethods()) {
@@ -70,8 +70,12 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 				break;
 			}
 		}
-		if (mt == null)
-			return fail(String.format("没有找到服务：%s.%s ！", this.getClass().getName(), func));
+		if (mt == null) {
+			this.setMessage(String.format("没有找到服务：%s.%s ！", this.getClass().getName(), func));
+			ss.setMessage(this.getMessage());
+			ss.setResult(false);
+			return ss;
+		}
 
 		Webfunc webfunc = mt.getAnnotation(Webfunc.class);
 		// if (webfunc == null)
@@ -81,7 +85,9 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 			long startTime = System.currentTimeMillis();
 			try {
 				// 执行具体的服务函数
-				return (Boolean) mt.invoke(this);
+				ss.setResult((Boolean) mt.invoke(this));
+				ss.setMessage(this.getMessage());
+				return ss;
 			} finally {
 				if (dataOut != null)
 					dataOut.first();
@@ -97,11 +103,15 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 			Throwable err = e.getCause() != null ? e.getCause() : e;
 			if ((err instanceof ServiceException)) {
 				this.setMessage(err.getMessage());
-				return false;
+				ss.setMessage(err.getMessage());
+				ss.setResult(false);
+				return ss;
 			} else {
 				log.error(err.getMessage(), err);
 				this.setMessage(err.getMessage());
-				return false;
+				ss.setMessage(err.getMessage());
+				ss.setResult(false);
+				return ss;
 			}
 		}
 	}
