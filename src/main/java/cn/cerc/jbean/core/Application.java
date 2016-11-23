@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import cn.cerc.jbean.form.IForm;
+import cn.cerc.jbean.tools.IAppLogin;
 import cn.cerc.jdb.cache.CacheConnection;
 import cn.cerc.jdb.cache.IMemcache;
 import cn.cerc.jdb.core.IHandle;
@@ -131,5 +132,14 @@ public class Application {
 			if (config == null)
 				throw new RuntimeException(String.format("%s 中没有找到 bean: AppConfig", xmlFile));
 		}
+	}
+
+	public static IAppLogin getAppLogin(IForm form) {
+		init();
+		if (!app.containsBean("AppLogin"))
+			throw new RuntimeException(String.format("%s 中没有找到 bean: AppLogin", xmlFile));
+		IAppLogin result = app.getBean("AppLogin", IAppLogin.class);
+		result.init(form);
+		return result;
 	}
 }
