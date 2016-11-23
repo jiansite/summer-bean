@@ -27,7 +27,7 @@ public interface IService {
 			status.setMessage(String.format(format, args));
 		else
 			status.setMessage(format);
-		return new ServiceStatus(true);
+		return status;
 	}
 
 	default public boolean checkSecurity(IHandle handle) {
