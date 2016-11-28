@@ -12,6 +12,6 @@ public interface IAppLogin {
 	
 	boolean checkSecurity(String token) throws IOException, ServletException;
 
-	boolean checkLogin(String userCode, String password) throws IOException, ServletException;
+	boolean checkLogin(String userCode, String password,String savePwd) throws IOException, ServletException;
 
 }
