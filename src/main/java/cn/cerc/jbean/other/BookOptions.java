@@ -25,6 +25,7 @@ public class BookOptions {
 	// public static final String ERPSalesDeptCode = "ERPSalesDeptCode";
 	public static final String BEDefaultCusCode = "BEDefaultCusCode";
 	public static final String BEDefaultVipCard = "BEDefaultVipCard";
+	public static final String OEDefaultBusiness = "OEDefaultBusiness";
 	public static final String AccInitYearMonth = "AccInitYearMonth";
 	public static final String DADefaultSupCode = "DADefaultSupCode";
 	public static final String DefaultProcCode = "DefaultProcCode";
@@ -144,6 +145,7 @@ public class BookOptions {
 		items.put(EanbleSalesPromotion, "启用促销包作业模式，用于满足如买M送N，或量大优惠等");
 		items.put(BEDefaultCusCode, "快速销售模式时，零售默认客户代码（<font color=red>新版系统将以默认零售会员为主</font>）");
 		items.put(BEDefaultVipCard, "登记零售单时，零售默认会员代码");
+		items.put(OEDefaultBusiness, "默认业务人员，用于处理在线订货单客户关联");
 		items.put(CostPriceSet, " 成本单价取移动加权价（如打上勾取加权价，如不打上勾取进货价）");
 		items.put(SafetyStockSynPartStock, "启用分仓别进行安全库存设置(其会自动同步到商品基本资料档)");
 		items.put(OrdToPurFinal, "关闭订单转采购自动审核");
@@ -343,8 +345,8 @@ public class BookOptions {
 	public void appendToCorpOption(String corpNo, String paramKey, String def) {
 		SqlQuery cdsTmp = new SqlQuery(handle);
 
-		cdsTmp.add("select * from %s where CorpNo_=N'%s' and Code_='%s' ", SystemTable.get(SystemTable.getBookOptions), corpNo,
-				paramKey);
+		cdsTmp.add("select * from %s where CorpNo_=N'%s' and Code_='%s' ", SystemTable.get(SystemTable.getBookOptions),
+				corpNo, paramKey);
 		cdsTmp.open();
 		if (!cdsTmp.eof())
 			return;
