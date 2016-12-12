@@ -2,8 +2,7 @@ package cn.cerc.jbean.other;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import cn.cerc.jdb.mysql.SqlQuery;
+import cn.cerc.jbean.client.LocalService;
 import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.core.TDateTime;
 
@@ -86,15 +85,11 @@ public class UserOptions {
 		try (MemoryBuffer buff = new MemoryBuffer(BufferType.getUserOption, sess.getUserCode(), ACode)) {
 			if (buff.isNull()) {
 				String Result = ADefault;
-				SqlQuery cdsSet = new SqlQuery(sess);
-
-				cdsSet.add(String.format("select Value_ from %s", SystemTable.get(SystemTable.getUserOptions)));
-				cdsSet.add(String.format("where UserCode_=N'%s' and Code_=N'%s'", sess.getUserCode(), ACode));
-				cdsSet.open();
-				if (!cdsSet.eof())
-					Result = cdsSet.getString("Value_");
+				LocalService ser = new LocalService(sess, "SvrUserOption");
+				if(ser.exec("Code_", ACode) && !ser.getDataOut().eof()){
+					Result = ser.getDataOut().getString("Value_");
+				}		
 				buff.setField("Value_", Result);
-
 			}
 			return buff.getString("Value_");
 		}
