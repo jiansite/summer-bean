@@ -42,4 +42,9 @@ public class SystemTable {
 	public static String get(String tableCode) {
 		return Application.getConfig().getParam(tableCode, tableCode);
 	}
+
+	// 表格列自定义存储表，建议存于MongoDB
+	public static String getGridManager() {
+		return "s_gridManager";
+	}
 }
