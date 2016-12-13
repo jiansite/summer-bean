@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import cn.cerc.jbean.client.LocalService;
 import cn.cerc.jdb.core.DataSet;
 import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.core.TDate;
@@ -228,14 +229,9 @@ public class BookOptions {
 		try (MemoryBuffer buff = new MemoryBuffer(BufferType.getVineOptions, handle.getCorpNo(), ACode)) {
 			if (buff.isNull() || buff.getString("Value_").equals("")) {
 				log.info("reset buffer.");
-				BuildQuery f = new BuildQuery(handle);
-
-				f.add("select Value_ from %s ", SystemTable.get(SystemTable.getBookOptions));
-				f.byField("CorpNo_", handle.getCorpNo());
-				f.byField("Code_", ACode);
-				f.open();
-				if (!f.getDataSet().eof())
-					buff.setField("Value_", f.getDataSet().getString("Value_"));
+				LocalService ser = new LocalService(handle, "SvrBookOption");
+				if(ser.exec("Code_", ACode) && !ser.getDataOut().eof())
+					buff.setField("Value_", ser.getDataOut().getString("Value_"));
 				else
 					buff.setField("Value_", def);
 

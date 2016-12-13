@@ -11,6 +11,8 @@
 	<bean id="AppSessionRestore.byUserCode" class="cn.cerc.jbean.services.AppSessionRestore" scope="prototype">
 		<property name="funcCode" value="byUserCode" />
 	</bean>
-	<!-- 获取用户选项 -->
+	<!-- 获取用户参数 -->
 	<bean id="SvrUserOption" class="cn.cerc.jbean.services.SvrUserOption" scope="prototype"></bean>
+	<!-- 获取帐套参数-->
+	<bean id="SvrBookOption" class="cn.cerc.jbean.services.SvrBookOption" scope="prototype"></bean>
 </beans>
