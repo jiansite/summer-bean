@@ -62,6 +62,11 @@ public class Application {
 		return (IPassport) bean;
 	}
 
+	public static boolean containsBean(String beanCode) {
+		init();
+		return app.containsBean(beanCode);
+	}
+
 	public static <T> T getBean(String beanCode, Class<T> requiredType) {
 		init();
 		return app.getBean(beanCode, requiredType);
@@ -116,15 +121,6 @@ public class Application {
 		return conn.getSession();
 	}
 
-	public static void main(String[] args) {
-		// listMethod(TAppLogin.class);
-		serviceItems = new FileSystemXmlApplicationContext(serviceFile);
-		for (String key : serviceItems.getBeanDefinitionNames()) {
-			if (serviceItems.getBean(key) == null)
-				System.out.println(key);
-		}
-	}
-
 	private static void init() {
 		if (app == null) {
 			app = new FileSystemXmlApplicationContext(xmlFile);
@@ -142,4 +138,14 @@ public class Application {
 		result.init(form);
 		return result;
 	}
+
+	public static void main(String[] args) {
+		// listMethod(TAppLogin.class);
+		serviceItems = new FileSystemXmlApplicationContext(serviceFile);
+		for (String key : serviceItems.getBeanDefinitionNames()) {
+			if (serviceItems.getBean(key) == null)
+				System.out.println(key);
+		}
+	}
+
 }
