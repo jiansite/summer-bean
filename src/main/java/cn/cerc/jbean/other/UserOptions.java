@@ -2,6 +2,7 @@ package cn.cerc.jbean.other;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import cn.cerc.jbean.client.LocalService;
 import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.core.TDateTime;
@@ -26,10 +27,22 @@ public class UserOptions {
 	public static final String AllowExportOutUP = "AllowExportOutUP";
 	public static final String AllowExportOther = "AllowExportOther";
 	public static final String AllowExportCusInfo = "AllowExportCusInfo";
+
 	// 设置我的喜好/行使业务助理职责
 	public static final String SalesValueByCusInfo = "SalesValueByCusInfo";
+
 	// 设置我的喜好/启用快速录单器
 	public static final String FastInputWindow = "FastInputWindow";
+
+	// 设置我的喜好/快速销售模式时，零售默认客户
+	public static final String BEUserDefaultCusCode = "BEUserDefaultCusCode";
+
+	// 设置我的喜好/默认库存仓别
+	public static final String LocalDefaultWHIn = "LocalDefaultWHIn";
+
+	// 设置我的喜好/默认发货仓别
+	public static final String LocalDefaultWHOut = "LocalDefaultWHOut";
+
 	// 进货价
 	public static final String ShowInUP = "ShowInUP";
 	// 零售价
@@ -86,9 +99,9 @@ public class UserOptions {
 			if (buff.isNull()) {
 				String Result = ADefault;
 				LocalService ser = new LocalService(sess, "SvrUserOption");
-				if(ser.exec("Code_", ACode) && !ser.getDataOut().eof()){
+				if (ser.exec("Code_", ACode) && !ser.getDataOut().eof()) {
 					Result = ser.getDataOut().getString("Value_");
-				}		
+				}
 				buff.setField("Value_", Result);
 
 			}
@@ -96,10 +109,10 @@ public class UserOptions {
 		}
 	}
 
-	 // 1.先判断当前用户是否有隐藏以前数据。如没隐藏则不增加控制，返回false
-	 // 2.如有隐藏再判断是否是否有开放临时打开查看所有权限功能。如有打开并在开放的时间内则可以查看所有的的资料，返回false
-	 // 3.如没有开发或开放已过去就只能查看指定时间内的单 返回 true及日期 范围的数据
-	 
+	// 1.先判断当前用户是否有隐藏以前数据。如没隐藏则不增加控制，返回false
+	// 2.如有隐藏再判断是否是否有开放临时打开查看所有权限功能。如有打开并在开放的时间内则可以查看所有的的资料，返回false
+	// 3.如没有开发或开放已过去就只能查看指定时间内的单 返回 true及日期 范围的数据
+
 	public static boolean isHideHistoryData(IHandle session, Var_Integer FDay) {
 		if (!GetUserOption(session, "HideHistoryData").equals("on"))
 			return false;
