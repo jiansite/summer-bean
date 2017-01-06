@@ -427,4 +427,9 @@ public class BookOptions {
 	public static boolean isDissableAccountSave(IHandle handle) {
 		return getEnabled(handle, DisableAccountSave);
 	}
+	
+	// 是否开启不允许无销售订单进行退货
+	public static boolean isAllowSaleBCToAG(IHandle handle) {
+		return getEnabled(handle, NoAllowSalesBCToAG);
+	}
 }
