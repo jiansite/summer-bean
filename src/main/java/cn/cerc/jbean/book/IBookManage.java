@@ -30,6 +30,9 @@ public interface IBookManage {
 
 	// 是否预览变更而不保存
 	public boolean isPreviewUpdate();
+	
+	// 是否指定料号回算
+	public String getPartCode();
 
 	// 取得开始日期
 	TDateTime getDateFrom();
