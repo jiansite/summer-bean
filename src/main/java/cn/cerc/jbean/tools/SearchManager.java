@@ -144,4 +144,9 @@ public class SearchManager implements IBookManage {
 	public boolean isPreviewUpdate() {
 		return false;
 	}
+
+	@Override
+	public String getPartCode() {
+		return null;
+	}
 }

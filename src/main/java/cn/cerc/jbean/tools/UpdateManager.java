@@ -26,6 +26,7 @@ public class UpdateManager implements IBookManage {
 	private DurationSection section;
 	private boolean previewUpdate;
 	private boolean locked = false;
+	private String partCode;
 
 	public UpdateManager(IHandle handle) {
 		this.handle = handle;
@@ -164,5 +165,14 @@ public class UpdateManager implements IBookManage {
 	@Override
 	public BookDataList getDatas() {
 		return dataList;
+	}
+
+	@Override
+	public String getPartCode() {
+		return partCode;
+	}
+	
+	public void setPartCode(String partCode) {
+		this.partCode = partCode;
 	}
 }
