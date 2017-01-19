@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -28,12 +29,24 @@ public class ServerConfig implements IConfig {
 			throw new RuntimeException("config is null");
 		String confFile = System.getProperty("user.home") + System.getProperty("file.separator") + conf.getConfigFile();
 		try {
-			File file2 = new File(confFile);
-			if (file2.exists()) {
-				properties.load(new FileInputStream(confFile));
-				log.info("read properties from : " + confFile);
+			String str = conf.getConfigFile();
+			if (str.startsWith("classpath:")) {
+				confFile = str.split(":")[1];
+				InputStream file = ServerConfig.class.getResourceAsStream("/" + str.split(":")[1]);
+				if (file != null) {
+					properties.load(file);
+					log.info("read properties from : " + str);
+				} else {
+					log.error("not find properties: " + str);
+				}
 			} else {
-				log.error("not find properties: " + confFile);
+				File file2 = new File(confFile);
+				if (file2.exists()) {
+					properties.load(new FileInputStream(confFile));
+					log.info("read properties from : " + confFile);
+				} else {
+					log.error("not find properties: " + confFile);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			log.error("The settings file '" + confFile + "' does not exist.");
