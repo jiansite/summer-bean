@@ -28,6 +28,8 @@ public class ResetManager implements IBookManage {
 	private DurationSection section;
 	// 预览更新而不真正保存
 	private boolean previewUpdate;
+	// 指定回算料号
+	private String partCode;
 
 	public ResetManager(IHandle handle) {
 		this.handle = handle;
@@ -190,5 +192,14 @@ public class ResetManager implements IBookManage {
 	@Override
 	public BookDataList getDatas() {
 		return null;
+	}
+
+	@Override
+	public String getPartCode() {
+		return partCode;
+	}
+	
+	public void setPartCode(String partCode) {
+		this.partCode = partCode;
 	}
 }
