@@ -55,7 +55,7 @@ public class RemoteService implements IServiceProxy {
 		}
 
 		String postParam = getDataIn().getJSON();
-		String url = String.format("http://%s/service/%s", this.host, this.service);
+		String url = String.format("http://%s/services/%s", this.host, this.service);
 		if (token != null)
 			url = url + "?token=" + token;
 		try {
