@@ -158,6 +158,8 @@ public class StartServices extends HttpServlet {
 				return serviceCode;
 			}
 		}
+		if(paths.length == 2)
+			return paths[1];
 		return null;
 	}
 

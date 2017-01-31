@@ -14,9 +14,9 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 	private static final Logger log = Logger.getLogger(CustomService.class);
 	protected DataSet dataIn = null; // request
 	protected DataSet dataOut = null; // response
+	protected String funcCode;
 	private String message = "";
 	private StringBuffer msg = null;
-	private String funcCode;
 	private String restPath;
 
 	public CustomService() {
