@@ -34,6 +34,8 @@ public class Microservice extends CustomService {
 		app.setService(this.service);
 		app.setHost(host);
 		app.setToken(token);
+		app.setDataIn(this.getDataIn());
+		app.setDataOut(this.getDataOut());
 		ServiceStatus status = new ServiceStatus(true);
 		try {
 			boolean rst = app.exec();

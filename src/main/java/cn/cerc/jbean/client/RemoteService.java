@@ -59,12 +59,9 @@ public class RemoteService implements IServiceProxy {
 		if (token != null)
 			url = url + "?token=" + token;
 		try {
-			StringBuffer params = new StringBuffer();
-			params.append("[").append(postParam).append("]");
 			log.debug("datain: " + postParam);
-
 			// String rst = CURL.doPost(url, params, "UTF-8");
-			String rst = postData(url, params.toString());
+			String rst = postData(url, postParam);
 			log.debug("datatout:" + rst);
 			if (rst == null)
 				return false;
@@ -156,5 +153,9 @@ public class RemoteService implements IServiceProxy {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	protected void setDataOut(DataSet dataOut) {
+		this.dataOut = dataOut;
 	}
 }
