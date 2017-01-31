@@ -29,7 +29,6 @@ public class Microservice extends CustomService {
 
 		String host = Application.getServerConfig().getProperty("microservice." + location, "127.0.0.1");
 		String token = (String) this.getHandle().getProperty(Application.token);
-		// String token = "ba6c78936ead4ad899ea9a41e2d8e742";
 
 		RemoteService app = new RemoteService();
 		app.setService(this.service);
