@@ -12,11 +12,11 @@ import cn.cerc.jdb.core.TDateTime;
 
 public class CustomService extends AbstractHandle implements IService, IRestful {
 	private static final Logger log = Logger.getLogger(CustomService.class);
-	private DataSet dataIn = null; // request
-	private DataSet dataOut = null; // response
+	protected DataSet dataIn = null; // request
+	protected DataSet dataOut = null; // response
+	protected String funcCode;
 	private String message = "";
 	private StringBuffer msg = null;
-	private String funcCode;
 	private String restPath;
 
 	public CustomService() {
@@ -55,23 +55,22 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 	public IStatus execute(DataSet dataIn, DataSet dataOut) {
 		if (this.funcCode == null)
 			throw new RuntimeException("funcCode is null");
-		this.dataIn = dataIn;
-		this.dataOut = dataOut;
-		return this.exec(this.funcCode);
-	}
+		if (dataIn != null)
+			this.dataIn = dataIn;
+		if (dataOut != null)
+			this.dataOut = dataOut;
 
-	public IStatus exec(String func) {
 		ServiceStatus ss = new ServiceStatus(false);
 		Class<?> self = this.getClass();
 		Method mt = null;
 		for (Method item : self.getMethods()) {
-			if (item.getName().equals(func)) {
+			if (item.getName().equals(this.funcCode)) {
 				mt = item;
 				break;
 			}
 		}
 		if (mt == null) {
-			this.setMessage(String.format("没有找到服务：%s.%s ！", this.getClass().getName(), func));
+			this.setMessage(String.format("没有找到服务：%s.%s ！", this.getClass().getName(), this.funcCode));
 			ss.setMessage(this.getMessage());
 			ss.setResult(false);
 			return ss;
@@ -99,7 +98,7 @@ public class CustomService extends AbstractHandle implements IService, IRestful 
 				long timeout = webfunc != null ? webfunc.timeout() : 1000;
 				if (totalTime > timeout) {
 					String tmp[] = this.getClass().getName().split("\\.");
-					String service = tmp[tmp.length - 1] + "." + func;
+					String service = tmp[tmp.length - 1] + "." + this.funcCode;
 					saveServiceTimeout(service, totalTime, false, false);
 				}
 			}

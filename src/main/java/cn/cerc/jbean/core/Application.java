@@ -10,12 +10,14 @@ import cn.cerc.jbean.form.IForm;
 import cn.cerc.jbean.tools.IAppLogin;
 import cn.cerc.jdb.cache.CacheConnection;
 import cn.cerc.jdb.cache.IMemcache;
+import cn.cerc.jdb.core.IConfig;
 import cn.cerc.jdb.core.IHandle;
 
 public class Application {
 	private static String xmlFile = "classpath:application.xml";
 	private static ApplicationContext app;
-	private static AppConfig config;
+	private static AppConfig appConfig;
+	private static ServerConfig serverConfig;
 
 	private static ApplicationContext serviceItems;
 	private static String serviceFile = "classpath:app-services.xml";
@@ -41,9 +43,21 @@ public class Application {
 	// 浏览器通用客户设备Id
 	public static final String webclient = "webclient";
 
+	@Deprecated
 	public static AppConfig getConfig() {
 		init();
-		return config;
+		return appConfig;
+	}
+
+	public static AppConfig getAppConfig() {
+		init();
+		return appConfig;
+	}
+
+	public static IConfig getServerConfig() {
+		if (serverConfig == null)
+			serverConfig = new ServerConfig();
+		return serverConfig;
 	}
 
 	public static IHandle getHandle() {
@@ -124,8 +138,8 @@ public class Application {
 	private static void init() {
 		if (app == null) {
 			app = new FileSystemXmlApplicationContext(xmlFile);
-			config = app.getBean("AppConfig", AppConfig.class);
-			if (config == null)
+			appConfig = app.getBean("AppConfig", AppConfig.class);
+			if (appConfig == null)
 				throw new RuntimeException(String.format("%s 中没有找到 bean: AppConfig", xmlFile));
 		}
 	}
