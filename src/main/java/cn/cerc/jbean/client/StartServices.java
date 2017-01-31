@@ -53,7 +53,7 @@ public class StartServices extends HttpServlet {
 	private void doProcess(String method, HttpServletRequest req, HttpServletResponse resp)
 			throws UnsupportedEncodingException, IOException {
 		String uri = req.getRequestURI();
-		AppConfig conf = Application.getConfig();
+		AppConfig conf = Application.getAppConfig();
 		if (!uri.startsWith("/" + conf.getPathServices()))
 			return;
 

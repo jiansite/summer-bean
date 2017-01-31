@@ -1,7 +1,5 @@
 package cn.cerc.jbean.core;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,29 +22,14 @@ public class ServerConfig implements IConfig {
 	public static final int appRelease = 3;
 
 	static {
-		AppConfig conf = Application.getConfig();
-		if (conf == null)
-			throw new RuntimeException("config is null");
-		String confFile = System.getProperty("user.home") + System.getProperty("file.separator") + conf.getConfigFile();
+		String confFile = "/application.properties";
 		try {
-			String str = conf.getConfigFile();
-			if (str.startsWith("classpath:")) {
-				confFile = str.split(":")[1];
-				InputStream file = ServerConfig.class.getResourceAsStream("/" + str.split(":")[1]);
-				if (file != null) {
-					properties.load(file);
-					log.info("read properties from : " + str);
-				} else {
-					log.error("not find properties: " + str);
-				}
+			InputStream file = ServerConfig.class.getResourceAsStream(confFile);
+			if (file != null) {
+				properties.load(file);
+				log.info("read from file: " + confFile);
 			} else {
-				File file2 = new File(confFile);
-				if (file2.exists()) {
-					properties.load(new FileInputStream(confFile));
-					log.info("read properties from : " + confFile);
-				} else {
-					log.error("not find properties: " + confFile);
-				}
+				log.error("not find file: " + confFile);
 			}
 		} catch (FileNotFoundException e) {
 			log.error("The settings file '" + confFile + "' does not exist.");
