@@ -40,7 +40,7 @@ public class SystemTable {
 	public static final String ManageBook = "000000";
 
 	public static String get(String tableCode) {
-		return Application.getConfig().getParam(tableCode, tableCode);
+		return Application.getAppConfig().getParam(tableCode, tableCode);
 	}
 
 	// 表格列自定义存储表，建议存于MongoDB

@@ -53,7 +53,7 @@ public class StartServices extends HttpServlet {
 	private void doProcess(String method, HttpServletRequest req, HttpServletResponse resp)
 			throws UnsupportedEncodingException, IOException {
 		String uri = req.getRequestURI();
-		AppConfig conf = Application.getConfig();
+		AppConfig conf = Application.getAppConfig();
 		if (!uri.startsWith("/" + conf.getPathServices()))
 			return;
 
@@ -63,7 +63,9 @@ public class StartServices extends HttpServlet {
 
 		// 将restPath转成service代码
 		DataSet dataIn = new DataSet();
-		dataIn.setJSON(getParams(req));
+		String str = getParams(req);
+		if (null != str && !"[{}]".equals(str))
+			dataIn.setJSON(str);
 		String serviceCode = getServiceCode(method, req.getRequestURI().substring(1), dataIn.getHead());
 		log.info(req.getRequestURI() + " => " + serviceCode);
 		if (serviceCode == null) {
@@ -158,6 +160,8 @@ public class StartServices extends HttpServlet {
 				return serviceCode;
 			}
 		}
+		if (paths.length == 2)
+			return paths[1];
 		return null;
 	}
 

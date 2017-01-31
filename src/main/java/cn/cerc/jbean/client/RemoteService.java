@@ -24,6 +24,7 @@ public class RemoteService implements IServiceProxy {
 	private DataSet dataIn;
 	private DataSet dataOut;
 	private String message;
+	private String token;
 
 	public RemoteService() {
 	}
@@ -52,16 +53,15 @@ public class RemoteService implements IServiceProxy {
 			for (int i = 0; i < args.length; i = i + 2)
 				headIn.setField(args[i].toString(), args[i + 1]);
 		}
-		
-		String postParam = getDataIn().getJSON();
-		String url = String.format("http://%s/service/%s", this.host, this.service);
-		try {
-			StringBuffer params = new StringBuffer();
-			params.append("[").append(postParam).append("]");
-			log.debug("datain: " + postParam);
 
+		String postParam = getDataIn().getJSON();
+		String url = String.format("http://%s/services/%s", this.host, this.service);
+		if (token != null)
+			url = url + "?token=" + token;
+		try {
+			log.debug("datain: " + postParam);
 			// String rst = CURL.doPost(url, params, "UTF-8");
-			String rst = postData(url, params.toString());
+			String rst = postData(url, postParam);
 			log.debug("datatout:" + rst);
 			if (rst == null)
 				return false;
@@ -71,15 +71,16 @@ public class RemoteService implements IServiceProxy {
 				this.setMessage(json.getString("message"));
 			}
 
-			JSONArray datas = json.getJSONArray("data");
-			if (datas != null && datas.size() > 0) {
-				if (dataOut == null)
-					dataOut = new DataSet();
-				else
-					dataOut.close();
-				dataOut.setJSON(datas.getString(0));
+			if (json.containsKey("data")) {
+				JSONArray datas = json.getJSONArray("data");
+				if (datas != null && datas.size() > 0) {
+					if (dataOut == null)
+						dataOut = new DataSet();
+					else
+						dataOut.close();
+					dataOut.setJSON(datas.getString(0));
+				}
 			}
-
 			return json.getBoolean("result");
 
 		} catch (Exception e) {
@@ -144,5 +145,17 @@ public class RemoteService implements IServiceProxy {
 
 	public void setDataIn(DataSet dataIn) {
 		this.dataIn = dataIn;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	protected void setDataOut(DataSet dataOut) {
+		this.dataOut = dataOut;
 	}
 }
