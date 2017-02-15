@@ -92,6 +92,7 @@ public class BookOptions {
 	public static final String EnableAccBook = "EnableAccBook";
 	public static final String UpdateCurrentMonthProfit = "UpdateCurrentMonthProfit";
 	public static final String BEDefaultBankAccount = "BEDefaultBankAccount";
+	public static final String UpdateTBDateToEffectiveDate = "UpdateTBDateToEffectiveDate";
 
 	private static Map<String, String> items = new HashMap<>();
 
@@ -176,6 +177,7 @@ public class BookOptions {
 		items.put(EnableSyncERP, "启用华软ERP同步到地藤系统");
 		items.put(AvailableStockOption, "可用库存设置，默认可用库存等于当前库存");
 		items.put(UpdateCurrentMonthProfit, "在修改进货价后，每晚自动更新本月所有单据的成本价与毛利");
+		items.put(UpdateTBDateToEffectiveDate, "单据生效时，单据日期自动等于生效日期");
 
 		// 安全管控参数
 		items.put(EnableReportSecurity, "启用安全报表控制，未确认的单据不允许打印报表");
@@ -431,5 +433,10 @@ public class BookOptions {
 	// 是否开启不允许无销售订单进行退货
 	public static boolean isAllowSaleBCToAG(IHandle handle) {
 		return getEnabled(handle, NoAllowSalesBCToAG);
+	}
+	
+	// 是否开启单据生效时，单据日期等于生效日期
+	public static boolean isUpdateTBDateToEffectiveDate(IHandle handle) {
+		return getEnabled(handle, UpdateTBDateToEffectiveDate);
 	}
 }
