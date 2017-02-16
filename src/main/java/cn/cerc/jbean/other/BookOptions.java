@@ -93,6 +93,7 @@ public class BookOptions {
 	public static final String UpdateCurrentMonthProfit = "UpdateCurrentMonthProfit";
 	public static final String BEDefaultBankAccount = "BEDefaultBankAccount";
 	public static final String UpdateTBDateToEffectiveDate = "UpdateTBDateToEffectiveDate";
+	public static final String EnableUpdateBCLogistics = "EnableUpdateBCLogistics";
 
 	private static Map<String, String> items = new HashMap<>();
 
@@ -178,6 +179,7 @@ public class BookOptions {
 		items.put(AvailableStockOption, "可用库存设置，默认可用库存等于当前库存");
 		items.put(UpdateCurrentMonthProfit, "在修改进货价后，每晚自动更新本月所有单据的成本价与毛利");
 		items.put(UpdateTBDateToEffectiveDate, "单据生效时，单据日期自动等于生效日期");
+		items.put(EnableUpdateBCLogistics, "允许手工修改销售单收货地址");
 
 		// 安全管控参数
 		items.put(EnableReportSecurity, "启用安全报表控制，未确认的单据不允许打印报表");
@@ -438,5 +440,10 @@ public class BookOptions {
 	// 是否开启单据生效时，单据日期等于生效日期
 	public static boolean isUpdateTBDateToEffectiveDate(IHandle handle) {
 		return getEnabled(handle, UpdateTBDateToEffectiveDate);
+	}
+	
+	// 是否允许手工修改销售单收货地址
+	public static boolean isEnableUpdateBCLogistics(IHandle handle) {
+		return getEnabled(handle, EnableUpdateBCLogistics);
 	}
 }
