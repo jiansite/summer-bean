@@ -43,6 +43,9 @@ public class UserOptions {
 
 	// 设置我的喜好/默认发货仓别
 	public static final String LocalDefaultWHOut = "LocalDefaultWHOut";
+	
+	// 设置我的喜好/单据自动保存
+	public static final String TranAutoSave = "TranAutoSave";
 
 	// 进货价
 	public static final String ShowInUP = "ShowInUP";
