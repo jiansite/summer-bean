@@ -15,7 +15,7 @@ public class SvrUserOption extends AbstractService {
 		Record head = dataIn.getHead();
 		SqlQuery ds = new SqlQuery(this);
 		ds.add(String.format("select Value_ from %s", SystemTable.get(SystemTable.getUserOptions)));
-		ds.add(String.format("where UserCode_=N'%s' and Code_=N'%s'", this.getUserCode(), head.getSafeString("Code_")));
+		ds.add(String.format("where UserCode_=N'%s' and Code_=N'%s'", this.getUserCode(), head.getString("Code_")));
 		ds.open();
 		dataOut.appendDataSet(ds);
 		return success();

@@ -1,8 +1,8 @@
 package cn.cerc.jbean.other;
 
-import cn.cerc.jdb.mysql.SqlQuery;
 import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.core.Record;
+import cn.cerc.jdb.mysql.SqlQuery;
 
 public class Memory_UserInfo {
 	public static int count = 0;
@@ -11,11 +11,9 @@ public class Memory_UserInfo {
 		MemoryBuffer buff = new MemoryBuffer(BufferType.getAccount, usercode);
 		if (buff.isNull()) {
 			SqlQuery ds = new SqlQuery(sess);
-
-			ds.setCommandText(String.format(
-					"select a.Code_,a.Enabled_,a.Name_,a.SuperUser_,a.DiyRole_,a.RoleCode_,"
-							+ "oi.Type_ from %s a inner join %s oi on a.CorpNo_=oi.CorpNo_ where a.Code_='%s'",
-							SystemTable.get(SystemTable.getUserInfo), SystemTable.get(SystemTable.getBookInfo), usercode));
+			ds.add("select a.Code_,a.Enabled_,a.Name_,a.SuperUser_,a.DiyRole_,a.RoleCode_,"
+					+ "oi.Type_ from %s a inner join %s oi on a.CorpNo_=oi.CorpNo_ where a.Code_='%s'",
+					SystemTable.get(SystemTable.getUserInfo), SystemTable.get(SystemTable.getBookInfo), usercode);
 			ds.open();
 			if (ds.eof())
 				throw new RuntimeException(String.format("用户代码 %s 不存在!", usercode));
