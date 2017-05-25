@@ -95,6 +95,7 @@ public class BookOptions {
 	public static final String UpdateTBDateToEffectiveDate = "UpdateTBDateToEffectiveDate";
 	public static final String IsViewOldMenu = "IsViewOldMenu";
 	public static final String DefaultProfitMargin = "DefaultProfitMargin";
+	public static final String OnlineToOfflineMenu = "OnlineToOfflineMenu";
 
 	private static Map<String, String> items = new HashMap<>();
 
@@ -444,4 +445,8 @@ public class BookOptions {
 		return getEnabled(handle, UpdateTBDateToEffectiveDate);
 	}
 	
+	// 是否开启网上订单菜单
+	public static boolean isEnableOnlineToOfflineMenu(IHandle handle) {
+		return getEnabled(handle, OnlineToOfflineMenu);
+	}
 }
