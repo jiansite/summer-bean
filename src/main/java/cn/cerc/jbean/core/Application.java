@@ -166,8 +166,8 @@ public class Application {
 
 	public static String getLangage() {
 		init();
-		String lang = appConfig.getParam("langage", defaultLangage);
-		if ("".equals(lang) || defaultLangage.equals(lang))
+		String lang = getServerConfig().getProperty("langage");
+		if (lang == null || "".equals(lang) || defaultLangage.equals(lang))
 			return defaultLangage;
 		else if ("en".equals(lang))
 			return lang;
