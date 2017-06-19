@@ -42,6 +42,8 @@ public class Application {
 	public static final String loginTime = "loginTime";
 	// 浏览器通用客户设备Id
 	public static final String webclient = "webclient";
+	// 默认界面语言版本
+	public static final String defaultLangage = "cn"; // 可选：cn/en
 
 	@Deprecated
 	public static AppConfig getConfig() {
@@ -160,6 +162,17 @@ public class Application {
 			if (serviceItems.getBean(key) == null)
 				System.out.println(key);
 		}
+	}
+
+	public static String getLangage() {
+		init();
+		String lang = appConfig.getParam("langage", defaultLangage);
+		if ("".equals(lang) || defaultLangage.equals(lang))
+			return defaultLangage;
+		else if ("en".equals(lang))
+			return lang;
+		else
+			throw new RuntimeException("not support langage: " + lang);
 	}
 
 }
