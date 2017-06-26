@@ -87,7 +87,6 @@ public class BookOptions {
 	public static final String EnablePrintPartCode = "EnablePrintPartCode";
 	public static final String DefaultCWCode = "DefaultCWCode";
 	public static final String AvailableStockOption = "AvailableStockOption";
-	public static final String PriorityWEBVersion = "PriorityWEBVersion";
 	public static final String ABAndBGDefaultMonthly = "ABAndBGDefaultMonthly";
 	public static final String EnableAccBook = "EnableAccBook";
 	public static final String UpdateCurrentMonthProfit = "UpdateCurrentMonthProfit";
@@ -158,7 +157,6 @@ public class BookOptions {
 		items.put(StockToPurFinal, "关闭库存转采购自动审核");
 		items.put(PurToPurFinal, "关闭手开采购自动审核");
 		items.put(DefaultCWCode, "默认仓别代码");
-		items.put(PriorityWEBVersion, "优先使用地藤WEB版");
 		items.put(ABAndBGDefaultMonthly, "进货时不登记现金付款金额，进货后由财务做付款单登记");
 		items.put(BEDefaultBankAccount, "默认柜台银行刷卡账户");
 
@@ -406,10 +404,6 @@ public class BookOptions {
 	public static boolean isEnableAvailableStock(IHandle handle) {
 		String result = getOption(handle, AvailableStockOption).trim();
 		return "1".equals(result);
-	}
-
-	public static boolean isPriorityWEBVersion(IHandle handle) {
-		return getEnabled(handle, PriorityWEBVersion);
 	}
 
 	// 是否允许设置分仓安全库存(请使用新的函数：isEnableDetailSafeStock);
