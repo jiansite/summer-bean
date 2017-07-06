@@ -34,6 +34,8 @@ public class Application {
 	public static final String userName = "UserName";
 	public static final String roleCode = "RoleCode";
 	public static final String bookNo = "BookNo";
+	public static final String deviceLanguage = "language";
+	
 	// 签核代理用户列表，代理多个用户以半角逗号隔开
 	public static final String ProxyUsers = "ProxyUsers";
 	// 客户端代码
