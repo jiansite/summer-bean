@@ -27,7 +27,7 @@ public class AppSessionRestore extends CustomService {
 
 		Record headOut = getDataOut().getHead();
 		headOut.setField("LoginTime_", TDateTime.Now());
-		getUserInfo(ds, headOut);
+		copyData(ds, headOut);
 		return true;
 	}
 
@@ -35,7 +35,7 @@ public class AppSessionRestore extends CustomService {
 		String token = getDataIn().getHead().getString("token");
 		SqlQuery ds1 = new SqlQuery(this);
 		SqlQuery ds = new SqlQuery(this);
-		ds1.add("select CorpNo_,UserID_,LoginTime_,Account_ as UserCode_ from %s where loginID_= '%s' ",
+		ds1.add("select CorpNo_,UserID_,LoginTime_,Account_ as UserCode_,Language_ from %s where loginID_= '%s' ",
 				SystemTable.get(SystemTable.getCurrentUser), token);
 		ds1.open();
 		if (ds1.eof()) {
@@ -58,11 +58,12 @@ public class AppSessionRestore extends CustomService {
 
 		Record headOut = getDataOut().getHead();
 		headOut.setField("LoginTime_", ds1.getDateTime("LoginTime_"));
-		getUserInfo(ds, headOut);
+		headOut.setField("Language_", ds1.getString("Language_"));
+		copyData(ds, headOut);
 		return true;
 	}
 
-	private void getUserInfo(SqlQuery ds, Record headOut) {
+	private void copyData(SqlQuery ds, Record headOut) {
 		headOut.setField("UserID_", ds.getString("ID_"));
 		headOut.setField("UserCode_", ds.getString("Code_"));
 		headOut.setField("UserName_", ds.getString("UserName_"));
