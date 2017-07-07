@@ -45,7 +45,7 @@ public class Application {
 	// 浏览器通用客户设备Id
 	public static final String webclient = "webclient";
 	// 默认界面语言版本
-	public static final String defaultLangage = "cn"; // 可选：cn/en
+	public static final String LangageDefault = "cn"; // 可选：cn/en
 
 	@Deprecated
 	public static AppConfig getConfig() {
@@ -169,8 +169,8 @@ public class Application {
 	public static String getLangage() {
 		init();
 		String lang = getServerConfig().getProperty("langage");
-		if (lang == null || "".equals(lang) || defaultLangage.equals(lang))
-			return defaultLangage;
+		if (lang == null || "".equals(lang) || LangageDefault.equals(lang))
+			return LangageDefault;
 		else if ("en".equals(lang))
 			return lang;
 		else
