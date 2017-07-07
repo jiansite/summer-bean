@@ -28,7 +28,7 @@ public class CustomHandle implements IHandle, AutoCloseable {
 		params.put(Application.userName, "");
 		params.put(Application.roleCode, "");
 		params.put(Application.bookNo, "");
-		params.put(Application.defaultLangage, "cn");
+		params.put(Application.deviceLanguage, Application.LangageDefault);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class CustomHandle implements IHandle, AutoCloseable {
 		this.setProperty(Application.roleCode, headOut.getString("RoleCode_"));
 		this.setProperty(Application.ProxyUsers, headOut.getString("ProxyUsers_"));
 		this.setProperty(Application.userName, headOut.getString("UserName_"));
-		this.setProperty(Application.defaultLangage, headOut.getString("Language_"));
+		this.setProperty(Application.deviceLanguage, headOut.getString("Language_"));
 
 		try (MemoryBuffer buff = new MemoryBuffer(BufferType.getSessionBase, token)) {
 			buff.setField("LoginTime_", headOut.getDateTime("LoginTime_"));
