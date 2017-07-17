@@ -22,6 +22,8 @@ public class UserOptions {
 	public static final String AllowSystemBaseDelete = "AllowSystemBaseDelete";
 	public static final String AllowUseOtherClient = "AllowUseOtherClient";
 	public static final String ShowAllMake = "ShowAllMake";
+	public static final String SetTBSortAgain = "SetTBSortAgain";
+	public static final String AllowUpdateBCLogistics = "AllowUpdateBCLogistics";
 	// 导出参数
 	public static final String AllowExportInUP = "AllowExportInUP";
 	public static final String AllowExportOutUP = "AllowExportOutUP";
@@ -42,6 +44,9 @@ public class UserOptions {
 
 	// 设置我的喜好/默认发货仓别
 	public static final String LocalDefaultWHOut = "LocalDefaultWHOut";
+	
+	// 设置我的喜好/单据自动保存
+	public static final String TranAutoSave = "TranAutoSave";
 
 	// 进货价
 	public static final String ShowInUP = "ShowInUP";
@@ -80,6 +85,8 @@ public class UserOptions {
 		option.put(DisableRegNotTodayAPAR, "不允许补登记非当天的登记收、付款单据");
 		option.put(AllowBCMaxDiscount, "用户批发销售时最大允许折扣(为零时不管控)");
 		option.put(ShowAllMake, "允许操作其他生产管理员建立的生产计划");
+		option.put(SetTBSortAgain, "在批发、零售销售时，扫描条码添加明细后，商品倒序排序（最新扫描的显示在最上方）");
+		option.put(AllowUpdateBCLogistics, "允许手工修改销售单收货地址");
 	}
 
 	public static String getOption(String key) {

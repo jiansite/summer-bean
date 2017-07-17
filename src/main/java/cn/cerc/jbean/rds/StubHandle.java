@@ -6,6 +6,8 @@ import cn.cerc.jbean.other.SystemTable;
 import cn.cerc.jdb.cache.CacheConnection;
 import cn.cerc.jdb.cache.CacheSession;
 import cn.cerc.jdb.core.IHandle;
+import cn.cerc.jdb.jiguang.JiguangConnection;
+import cn.cerc.jdb.jiguang.JiguangSession;
 import cn.cerc.jdb.mysql.SqlConnection;
 import cn.cerc.jdb.mysql.SqlQuery;
 import cn.cerc.jdb.mysql.SqlSession;
@@ -27,7 +29,7 @@ public class StubHandle implements IHandle, AutoCloseable {
 
 	public StubHandle(String corpNo) {
 		handle = Application.getHandle();
-		
+
 		String userCode;
 		SqlQuery ds = new SqlQuery(this);
 
@@ -85,6 +87,12 @@ public class StubHandle implements IHandle, AutoCloseable {
 		}
 		if (obj == null && QueueSession.sessionId.equals(key)) {
 			QueueConnection conn = new QueueConnection();
+			conn.setConfig(new ServerConfig());
+			obj = conn.getSession();
+			handle.setProperty(key, obj);
+		}
+		if (obj == null && JiguangSession.sessionId.equals(key)) {
+			JiguangConnection conn = new JiguangConnection();
 			conn.setConfig(new ServerConfig());
 			obj = conn.getSession();
 			handle.setProperty(key, obj);
