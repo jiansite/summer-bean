@@ -34,6 +34,8 @@ public class Application {
 	public static final String userName = "UserName";
 	public static final String roleCode = "RoleCode";
 	public static final String bookNo = "BookNo";
+	public static final String deviceLanguage = "language";
+	
 	// 签核代理用户列表，代理多个用户以半角逗号隔开
 	public static final String ProxyUsers = "ProxyUsers";
 	// 客户端代码
@@ -42,6 +44,8 @@ public class Application {
 	public static final String loginTime = "loginTime";
 	// 浏览器通用客户设备Id
 	public static final String webclient = "webclient";
+	// 默认界面语言版本
+	public static final String LangageDefault = "cn"; // 可选：cn/en
 
 	@Deprecated
 	public static AppConfig getConfig() {
@@ -160,6 +164,17 @@ public class Application {
 			if (serviceItems.getBean(key) == null)
 				System.out.println(key);
 		}
+	}
+
+	public static String getLangage() {
+		init();
+		String lang = getServerConfig().getProperty("langage");
+		if (lang == null || "".equals(lang) || LangageDefault.equals(lang))
+			return LangageDefault;
+		else if ("en".equals(lang))
+			return lang;
+		else
+			throw new RuntimeException("not support langage: " + lang);
 	}
 
 }

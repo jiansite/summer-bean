@@ -87,11 +87,15 @@ public class BookOptions {
 	public static final String EnablePrintPartCode = "EnablePrintPartCode";
 	public static final String DefaultCWCode = "DefaultCWCode";
 	public static final String AvailableStockOption = "AvailableStockOption";
-	public static final String PriorityWEBVersion = "PriorityWEBVersion";
 	public static final String ABAndBGDefaultMonthly = "ABAndBGDefaultMonthly";
 	public static final String EnableAccBook = "EnableAccBook";
 	public static final String UpdateCurrentMonthProfit = "UpdateCurrentMonthProfit";
 	public static final String BEDefaultBankAccount = "BEDefaultBankAccount";
+	public static final String UpdateTBDateToEffectiveDate = "UpdateTBDateToEffectiveDate";
+	public static final String IsViewOldMenu = "IsViewOldMenu";
+	public static final String DefaultProfitMargin = "DefaultProfitMargin";
+	public static final String OnlineToOfflineMenu = "OnlineToOfflineMenu";
+	public static final String OnlineToOfflineMaxScale = "OnlineToOfflineMaxScale";
 
 	private static Map<String, String> items = new HashMap<>();
 
@@ -153,7 +157,6 @@ public class BookOptions {
 		items.put(StockToPurFinal, "关闭库存转采购自动审核");
 		items.put(PurToPurFinal, "关闭手开采购自动审核");
 		items.put(DefaultCWCode, "默认仓别代码");
-		items.put(PriorityWEBVersion, "优先使用地藤WEB版");
 		items.put(ABAndBGDefaultMonthly, "进货时不登记现金付款金额，进货后由财务做付款单登记");
 		items.put(BEDefaultBankAccount, "默认柜台银行刷卡账户");
 
@@ -176,6 +179,10 @@ public class BookOptions {
 		items.put(EnableSyncERP, "启用华软ERP同步到地藤系统");
 		items.put(AvailableStockOption, "可用库存设置，默认可用库存等于当前库存");
 		items.put(UpdateCurrentMonthProfit, "在修改进货价后，每晚自动更新本月所有单据的成本价与毛利");
+		items.put(UpdateTBDateToEffectiveDate, "单据生效时，单据日期自动等于生效日期");
+		items.put(IsViewOldMenu, "是否显示旧版菜单链接（带闪电标识）");
+		items.put(DefaultProfitMargin, "网单代发货利润率（<font color=red>需启用O2O模组</font>）");
+		items.put(OnlineToOfflineMaxScale, "商家代发允许的最大时间，按小时计（<font color=red>需启用O2O模组</font>）");
 
 		// 安全管控参数
 		items.put(EnableReportSecurity, "启用安全报表控制，未确认的单据不允许打印报表");
@@ -399,10 +406,6 @@ public class BookOptions {
 		return "1".equals(result);
 	}
 
-	public static boolean isPriorityWEBVersion(IHandle handle) {
-		return getEnabled(handle, PriorityWEBVersion);
-	}
-
 	// 是否允许设置分仓安全库存(请使用新的函数：isEnableDetailSafeStock);
 	@Deprecated
 	public static boolean isSafetyStockSynPartStock(IHandle handle) {
@@ -431,5 +434,15 @@ public class BookOptions {
 	// 是否开启不允许无销售订单进行退货
 	public static boolean isAllowSaleBCToAG(IHandle handle) {
 		return getEnabled(handle, NoAllowSalesBCToAG);
+	}
+	
+	// 是否开启单据生效时，单据日期等于生效日期
+	public static boolean isUpdateTBDateToEffectiveDate(IHandle handle) {
+		return getEnabled(handle, UpdateTBDateToEffectiveDate);
+	}
+	
+	// 是否开启网上订单菜单
+	public static boolean isEnableOnlineToOfflineMenu(IHandle handle) {
+		return getEnabled(handle, OnlineToOfflineMenu);
 	}
 }

@@ -94,7 +94,8 @@ public class LocalService implements IServiceProxy {
 			((Microservice) bean).setService(serviceCode);
 
 		try {
-			log.info(this.serviceCode);
+			if (!"AppSessionRestore.byUserCode".equals(this.serviceCode))
+				log.info(this.serviceCode);
 			if (ServerConfig.getAppLevel() == ServerConfig.appRelease) {
 				IStatus status = bean.execute(dataIn, dataOut);
 				boolean result = status.getResult();
