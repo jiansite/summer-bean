@@ -147,9 +147,7 @@ public class Template {
 		this.document = document;
 	}
 
-	/**
-	 * 返回纸张尺寸， 以毫米为单位，定义宽度与高度
-	 */
+	// 返回纸张尺寸， 以毫米为单位，定义宽度与高度
 	protected Rectangle createRectangle(int width, int height) {
 		double x = width * 72 / 25.4;
 		double y = height * 72 / 25.4;

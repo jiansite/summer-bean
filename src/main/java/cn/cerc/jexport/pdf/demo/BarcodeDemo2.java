@@ -31,14 +31,6 @@ public class BarcodeDemo2 {
 		new BarcodeDemo2().createPdf("d:/barcodes.pdf");
 	}
 
-	/**
-	 * Creates a PDF document.
-	 * 
-	 * @param filename
-	 *            the path to the new PDF document
-	 * @throws DocumentException
-	 * @throws IOException
-	 */
 	public void createPdf(String filename) throws IOException, DocumentException {
 		BaseFont bf = null;
 		Font fontChinese = null;
