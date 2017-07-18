@@ -50,5 +50,7 @@ public enum BufferType {
 	// 23.全局缓存
 	getGlobal,
 	// 24.专用于单据复制
-	getTicket
+	getTicket,
+	// 25.订购菜单缓存
+	getCusMenu
 }
