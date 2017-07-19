@@ -35,7 +35,7 @@ public class Application {
 	public static final String roleCode = "RoleCode";
 	public static final String bookNo = "BookNo";
 	public static final String deviceLanguage = "language";
-	
+
 	// 签核代理用户列表，代理多个用户以半角逗号隔开
 	public static final String ProxyUsers = "ProxyUsers";
 	// 客户端代码
@@ -47,7 +47,7 @@ public class Application {
 	// 默认界面语言版本
 	public static final String LangageDefault = "cn"; // 可选：cn/en
 
-	@Deprecated
+	@Deprecated // 请改使用getAppConfig()
 	public static AppConfig getConfig() {
 		init();
 		return appConfig;
