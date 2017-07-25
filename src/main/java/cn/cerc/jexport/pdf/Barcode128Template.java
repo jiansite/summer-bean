@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.Barcode128;
@@ -52,7 +53,9 @@ public class Barcode128Template extends Template {
 			document.add(code128.createImageWithBarcode(cb, null, null));
 
 			// 描述信息
-			document.add(new Paragraph(dataSet.getString("Name_"), f8));
+			Paragraph paragraph = new Paragraph(dataSet.getString("Name_"), f8);
+			paragraph.setAlignment(Element.ALIGN_CENTER);
+			document.add(paragraph);
 		}
 	}
 
