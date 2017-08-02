@@ -9,16 +9,17 @@ public class AppHandle extends AbstractHandle implements AutoCloseable {
 
 	@Override
 	public void close() {
-		handle.closeConnections();
+		this.closeConnections();
 	}
 
+	@Override
 	public SqlSession getConnection() {
 		return (SqlSession) handle.getProperty(SqlSession.sessionId);
 	}
 
 	@Override
 	public void closeConnections() {
-		handle.closeConnections();
+		this.getConnection().closeSession();
 	}
 
 	@Override

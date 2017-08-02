@@ -102,7 +102,7 @@ public class StubHandle implements IHandle, AutoCloseable {
 
 	@Override
 	public void close() {
-		handle.closeConnections();
+		this.getConnection().closeSession();
 	}
 
 }
