@@ -96,6 +96,7 @@ public class BookOptions {
 	public static final String DefaultProfitMargin = "DefaultProfitMargin";
 	public static final String OnlineToOfflineMenu = "OnlineToOfflineMenu";
 	public static final String OnlineToOfflineMaxScale = "OnlineToOfflineMaxScale";
+	public static final String BMDefaultDeptCode = "BMDefaultDeptCode";
 
 	private static Map<String, String> items = new HashMap<>();
 
@@ -150,6 +151,7 @@ public class BookOptions {
 		items.put(EanbleSalesPromotion, "启用促销包作业模式，用于满足如买M送N，或量大优惠等");
 		items.put(BEDefaultCusCode, "快速销售模式时，零售默认客户代码（<font color=red>新版系统将以默认零售会员为主</font>）");
 		items.put(BEDefaultVipCard, "登记零售单时，零售默认会员代码");
+		items.put(BMDefaultDeptCode, "登记转账单时，银行费用默认部门代码");
 		items.put(OEDefaultBusiness, "默认业务人员，用于处理在线订货单客户关联");
 		items.put(CostPriceSet, " 成本单价取移动加权价（如打上勾取加权价，如不打上勾取进货价）");
 		items.put(SafetyStockSynPartStock, "启用分仓别进行安全库存设置(其会自动同步到商品基本资料档)");
