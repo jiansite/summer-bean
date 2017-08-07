@@ -96,6 +96,7 @@ public class BookOptions {
 	public static final String DefaultProfitMargin = "DefaultProfitMargin";
 	public static final String OnlineToOfflineMenu = "OnlineToOfflineMenu";
 	public static final String OnlineToOfflineMaxScale = "OnlineToOfflineMaxScale";
+	public static final String OnlineToOfflineArea = "OnlineToOfflineArea";
 	public static final String BMDefaultDeptCode = "BMDefaultDeptCode";
 
 	private static Map<String, String> items = new HashMap<>();
@@ -185,6 +186,7 @@ public class BookOptions {
 		items.put(IsViewOldMenu, "是否显示旧版菜单链接（带闪电标识）");
 		items.put(DefaultProfitMargin, "网单代发货利润率（<font color=red>需启用O2O模组</font>）");
 		items.put(OnlineToOfflineMaxScale, "商家代发允许的最大时间，按小时计（<font color=red>需启用O2O模组</font>）");
+		items.put(OnlineToOfflineArea, "网单代发区域等级范围设置（<font color=red>0、按省 1、按市 2、按县 3、指定市 4、指定县 5、指定镇</font>）");
 
 		// 安全管控参数
 		items.put(EnableReportSecurity, "启用安全报表控制，未确认的单据不允许打印报表");
