@@ -9,65 +9,65 @@ import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.queue.QueueSession;
 
 public class MailRecord implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private IHandle handle;
-	private String to_addr;
-	private String to_name;
-	private String subject;
-	private String content;
+    private IHandle handle;
+    private String to_addr;
+    private String to_name;
+    private String subject;
+    private String content;
 
-	public MailRecord(IHandle handle) {
-		this.handle = handle;
-	}
+    public MailRecord(IHandle handle) {
+        this.handle = handle;
+    }
 
-	public boolean send() {
-		QueueSession sess = (QueueSession) handle.getProperty(QueueSession.sessionId);
-		CloudQueue queue = sess.openQueue(appQueue.queueSendMail);
-		return sess.append(queue, this.toString());
-	}
+    public boolean send() {
+        QueueSession sess = (QueueSession) handle.getProperty(QueueSession.sessionId);
+        CloudQueue queue = sess.openQueue(appQueue.queueSendMail);
+        return sess.append(queue, this.toString());
+    }
 
-	public MailRecord(String to, String subject, String content) {
-		this.to_addr = to;
-		this.subject = subject;
-		this.content = content;
-	}
+    public MailRecord(String to, String subject, String content) {
+        this.to_addr = to;
+        this.subject = subject;
+        this.content = content;
+    }
 
-	public String getSubject() {
-		return subject;
-	}
+    public String getSubject() {
+        return subject;
+    }
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public String getTo_addr() {
-		return to_addr;
-	}
+    public String getTo_addr() {
+        return to_addr;
+    }
 
-	public void setTo_addr(String to_addr) {
-		this.to_addr = to_addr;
-	}
+    public void setTo_addr(String to_addr) {
+        this.to_addr = to_addr;
+    }
 
-	public String getTo_name() {
-		return to_name;
-	}
+    public String getTo_name() {
+        return to_name;
+    }
 
-	public void setTo_name(String to_name) {
-		this.to_name = to_name;
-	}
+    public void setTo_name(String to_name) {
+        this.to_name = to_name;
+    }
 
-	@Override
-	public String toString() {
-		Gson gson = new Gson();
-		return gson.toJson(this);
-	}
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
 }

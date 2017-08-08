@@ -10,15 +10,15 @@ import cn.cerc.jdb.mysql.SqlQuery;
 
 public class SvrBookOption extends AbstractService {
 
-	@Override
-	public IStatus execute(DataSet dataIn, DataSet dataOut) throws ServiceException {
-		Record head = dataIn.getHead();
+    @Override
+    public IStatus execute(DataSet dataIn, DataSet dataOut) throws ServiceException {
+        Record head = dataIn.getHead();
 
-		SqlQuery ds = new SqlQuery(this);
-		ds.add("select Value_ from %s ", SystemTable.get(SystemTable.getBookOptions));
-		ds.add("where CorpNo_ = '%s' and Code_ = '%s'", this.getCorpNo(), head.getString("Code_"));
-		ds.open();
-		dataOut.appendDataSet(ds);
-		return success();
-	}
+        SqlQuery ds = new SqlQuery(this);
+        ds.add("select Value_ from %s ", SystemTable.get(SystemTable.getBookOptions));
+        ds.add("where CorpNo_ = '%s' and Code_ = '%s'", this.getCorpNo(), head.getString("Code_"));
+        ds.open();
+        dataOut.appendDataSet(ds);
+        return success();
+    }
 }

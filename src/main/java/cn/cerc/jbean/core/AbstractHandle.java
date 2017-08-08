@@ -4,32 +4,32 @@ import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.mysql.SqlSession;
 
 public class AbstractHandle implements IHandle {
-	protected IHandle handle;
+    protected IHandle handle;
 
-	public SqlSession getConnection() {
-		return (SqlSession) handle.getProperty(SqlSession.sessionId);
-	}
+    public SqlSession getConnection() {
+        return (SqlSession) handle.getProperty(SqlSession.sessionId);
+    }
 
-	@Override
-	public String getCorpNo() {
-		return handle.getCorpNo();
-	}
+    @Override
+    public String getCorpNo() {
+        return handle.getCorpNo();
+    }
 
-	@Override
-	public String getUserCode() {
-		return handle.getUserCode();
-	}
+    @Override
+    public String getUserCode() {
+        return handle.getUserCode();
+    }
 
-	@Override
-	public Object getProperty(String key) {
-		return handle.getProperty(key);
-	}
+    @Override
+    public Object getProperty(String key) {
+        return handle.getProperty(key);
+    }
 
-	public IHandle getHandle() {
-		return handle;
-	}
+    public IHandle getHandle() {
+        return handle;
+    }
 
-	public void setHandle(IHandle handle) {
-		this.handle = handle;
-	}
+    public void setHandle(IHandle handle) {
+        this.handle = handle;
+    }
 }

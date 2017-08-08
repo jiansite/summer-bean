@@ -3,35 +3,35 @@ package cn.cerc.jbean.book;
 import cn.cerc.jdb.core.TDateTime;
 
 public class VirtualData implements IBookData {
-	private TDateTime date;
-	private IBook book;
-	private IBookData bookData;
+    private TDateTime date;
+    private IBook book;
+    private IBookData bookData;
 
-	public VirtualData(IBook book, IBookData bookData, int month) {
-		this.book = book;
-		this.bookData = bookData;
-		this.date = bookData.getDate().incMonth(month).monthBof();
-	}
+    public VirtualData(IBook book, IBookData bookData, int month) {
+        this.book = book;
+        this.bookData = bookData;
+        this.date = bookData.getDate().incMonth(month).monthBof();
+    }
 
-	public IBookData getBookData() {
-		return bookData;
-	}
+    public IBookData getBookData() {
+        return bookData;
+    }
 
-	public IBook getBook() {
-		return book;
-	}
+    public IBook getBook() {
+        return book;
+    }
 
-	@Override
-	public TDateTime getDate() {
-		return date;
-	}
+    @Override
+    public TDateTime getDate() {
+        return date;
+    }
 
-	@Override
-	public boolean check() {
-		return true;
-	}
+    @Override
+    public boolean check() {
+        return true;
+    }
 
-	public boolean isOwner(IBook book) {
-		return this.book == book;
-	}
+    public boolean isOwner(IBook book) {
+        return this.book == book;
+    }
 }
