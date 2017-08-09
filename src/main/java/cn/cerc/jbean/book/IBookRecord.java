@@ -8,6 +8,6 @@ package cn.cerc.jbean.book;
  */
 public interface IBookRecord {
 
-	// 接收原始数据
-	public void write(IBookData bookData);
+    // 接收原始数据
+    public void write(IBookData bookData);
 }

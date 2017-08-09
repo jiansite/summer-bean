@@ -3,41 +3,41 @@ package cn.cerc.jbean.mail;
 import java.util.ArrayList;
 
 public class HtmlControl extends Component {
-	private HtmlControl parent;
-	private ArrayList<HtmlControl> controls = new ArrayList<HtmlControl>();
+    private HtmlControl parent;
+    private ArrayList<HtmlControl> controls = new ArrayList<HtmlControl>();
 
-	public HtmlControl(HtmlControl owner) {
-		this.init(owner);
-		this.parent = owner;
-		if (owner != null) {
-			owner.addControl(this);
-		}
-	}
+    public HtmlControl(HtmlControl owner) {
+        this.init(owner);
+        this.parent = owner;
+        if (owner != null) {
+            owner.addControl(this);
+        }
+    }
 
-	private void addControl(HtmlControl child) {
-		this.controls.add(child);
-	}
+    private void addControl(HtmlControl child) {
+        this.controls.add(child);
+    }
 
-	public int getControlCount() {
-		return getControls().size();
-	}
+    public int getControlCount() {
+        return getControls().size();
+    }
 
-	public HtmlControl getParent() {
-		return parent;
-	}
+    public HtmlControl getParent() {
+        return parent;
+    }
 
-	public void setParent(HtmlControl parent) {
-		this.parent = parent;
-	}
+    public void setParent(HtmlControl parent) {
+        this.parent = parent;
+    }
 
-	public ArrayList<HtmlControl> getControls() {
-		return controls;
-	}
+    public ArrayList<HtmlControl> getControls() {
+        return controls;
+    }
 
-	public void getHtml(StringBuffer html) {
-		for (HtmlControl obj : this.getControls()) {
-			obj.getHtml(html);
-		}
-	}
+    public void getHtml(StringBuffer html) {
+        for (HtmlControl obj : this.getControls()) {
+            obj.getHtml(html);
+        }
+    }
 
 }
