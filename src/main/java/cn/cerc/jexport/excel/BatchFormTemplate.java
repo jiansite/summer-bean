@@ -14,41 +14,41 @@ import jxl.write.biff.RowsExceededException;
  * 批次导出单据明细
  */
 public class BatchFormTemplate extends FormTemplate {
-	List<DataSet> items;
+    List<DataSet> items;
 
-	@Override
-	public void output(WritableSheet sheet) throws RowsExceededException, WriteException {
-		int newRow = 0;
-		for (DataSet dataSet : items) {
-			this.setDataSet(dataSet);
-			this.setFooter((template, sheet1) -> {
-				Record footer = new Record();
-				for (Record item : dataSet) {
-					footer.setField("合计数量", footer.getDouble("合计数量") + item.getDouble("Num_"));
-					footer.setField("合计金额", footer.getDouble("合计金额") + item.getDouble("OriAmount_"));
-				}
-				int row = template.getRow();
-				for (String field : footer.getItems().keySet()) {
-					row++;
-					Object val = footer.getItems().get(field);
-					sheet1.addCell(new Label(0, row, field));
-					sheet1.addCell(new Label(1, row, Double.toString(utils.roundTo((Double) val, -2))));
-				}
-			});
+    @Override
+    public void output(WritableSheet sheet) throws RowsExceededException, WriteException {
+        int newRow = 0;
+        for (DataSet dataSet : items) {
+            this.setDataSet(dataSet);
+            this.setFooter((template, sheet1) -> {
+                Record footer = new Record();
+                for (Record item : dataSet) {
+                    footer.setField("合计数量", footer.getDouble("合计数量") + item.getDouble("Num_"));
+                    footer.setField("合计金额", footer.getDouble("合计金额") + item.getDouble("OriAmount_"));
+                }
+                int row = template.getRow();
+                for (String field : footer.getItems().keySet()) {
+                    row++;
+                    Object val = footer.getItems().get(field);
+                    sheet1.addCell(new Label(0, row, field));
+                    sheet1.addCell(new Label(1, row, Double.toString(utils.roundTo((Double) val, -2))));
+                }
+            });
 
-			// 输出原来的表格
-			super.output(sheet);
-			newRow += this.getHeads().size() + dataSet.size() + 6;
-			this.setRow(newRow);
-		}
-	}
+            // 输出原来的表格
+            super.output(sheet);
+            newRow += this.getHeads().size() + dataSet.size() + 6;
+            this.setRow(newRow);
+        }
+    }
 
-	public List<DataSet> getItems() {
-		return items;
-	}
+    public List<DataSet> getItems() {
+        return items;
+    }
 
-	public void setItems(List<DataSet> items) {
-		this.items = items;
-	}
+    public void setItems(List<DataSet> items) {
+        this.items = items;
+    }
 
 }

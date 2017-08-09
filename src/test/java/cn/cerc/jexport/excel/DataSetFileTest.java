@@ -14,18 +14,18 @@ import jxl.write.biff.RowsExceededException;
 
 public class DataSetFileTest {
 
-	@Test
-	@Ignore(value = "测试文件建立，仅在本地执行")
-	public void testExecute() throws RowsExceededException, WriteException, IOException {
-		DataSet ds = new DataSet();
-		ds.append();
-		ds.setField("code", "code1");
-		ds.append();
-		ds.setField("code", "code2");
+    @Test
+    @Ignore(value = "测试文件建立，仅在本地执行")
+    public void testExecute() throws RowsExceededException, WriteException, IOException {
+        DataSet ds = new DataSet();
+        ds.append();
+        ds.setField("code", "code1");
+        ds.append();
+        ds.setField("code", "code2");
 
-		String fileName = "d:\\tempfile.xls";
-		new DataSetFile(ds).save(fileName);
-		File file = new File(fileName);
-		assertTrue("文件建立失败！", file.exists());
-	}
+        String fileName = "d:\\tempfile.xls";
+        new DataSetFile(ds).save(fileName);
+        File file = new File(fileName);
+        assertTrue("文件建立失败！", file.exists());
+    }
 }

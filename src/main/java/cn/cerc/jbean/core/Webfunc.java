@@ -10,15 +10,15 @@ import cn.cerc.jbean.other.BookVersion;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Webfunc {
-	// 允许版本号列表
-	BookVersion version() default BookVersion.ctAll;
+    // 允许版本号列表
+    BookVersion version() default BookVersion.ctAll;
 
-	// // 权限代码
-	// String security() default Passport.all_user_pass;
-	//
-	// // 动作代码
-	// ServiceAction action() default ServiceAction.Execute;
+    // // 权限代码
+    // String security() default Passport.all_user_pass;
+    //
+    // // 动作代码
+    // ServiceAction action() default ServiceAction.Execute;
 
-	// 合理最大执行时间
-	long timeout() default 1000;
+    // 合理最大执行时间
+    long timeout() default 1000;
 }

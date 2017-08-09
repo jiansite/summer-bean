@@ -8,10 +8,10 @@ import cn.cerc.jbean.form.IForm;
 
 public interface IAppLogin {
 
-	void init(IForm form);
-	
-	boolean checkSecurity(String token) throws IOException, ServletException;
+    void init(IForm form);
 
-	boolean checkLogin(String userCode, String password) throws IOException, ServletException;
+    boolean checkSecurity(String token) throws IOException, ServletException;
+
+    boolean checkLogin(String userCode, String password) throws IOException, ServletException;
 
 }

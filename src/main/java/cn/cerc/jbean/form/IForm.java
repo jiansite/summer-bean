@@ -6,47 +6,47 @@ import javax.servlet.http.HttpServletResponse;
 import cn.cerc.jdb.core.IHandle;
 
 public interface IForm {
-	// 页面标题
-	public String getTitle();
+    // 页面标题
+    public String getTitle();
 
-	public void setRequest(HttpServletRequest request);
+    public void setRequest(HttpServletRequest request);
 
-	public HttpServletRequest getRequest();
+    public HttpServletRequest getRequest();
 
-	public void setResponse(HttpServletResponse response);
+    public void setResponse(HttpServletResponse response);
 
-	public HttpServletResponse getResponse();
+    public HttpServletResponse getResponse();
 
-	// 数据库连接
-	public void setHandle(IHandle handle);
+    // 数据库连接
+    public void setHandle(IHandle handle);
 
-	public IHandle getHandle();
+    public IHandle getHandle();
 
-	// 是否有登录
-	public boolean logon();
+    // 是否有登录
+    public boolean logon();
 
-	// 取得访问设备讯息
-	public IClient getClient();
+    // 取得访问设备讯息
+    public IClient getClient();
 
-	public void setClient(IClient client);
-	
-	// 取得菜单定义
-	public IMenu getMenu();
+    public void setClient(IClient client);
 
-	// 设置菜单定义
-	public void setMenu(IMenu menu);
+    // 取得菜单定义
+    public IMenu getMenu();
 
-	// 设置参数
-	public void setParam(String key, String value);
+    // 设置菜单定义
+    public void setMenu(IMenu menu);
 
-	// 取得参数
-	public String getParam(String key, String def);
+    // 设置参数
+    public void setParam(String key, String value);
 
-	// 输出页面（支持jsp、reddirect、json等）
-	public IPage execute() throws Exception;
+    // 取得参数
+    public String getParam(String key, String def);
 
-	// 设备安全检查通过否，为true时需要进行进一步授权
-	default public boolean passDevice() {
-		return false;
-	}
+    // 输出页面（支持jsp、reddirect、json等）
+    public IPage execute() throws Exception;
+
+    // 设备安全检查通过否，为true时需要进行进一步授权
+    default public boolean passDevice() {
+        return false;
+    }
 }
