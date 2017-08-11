@@ -48,6 +48,9 @@ public class UserOptions {
     // 设置我的喜好/单据自动保存
     public static final String TranAutoSave = "TranAutoSave";
 
+    // 设置我的喜好/默认部门
+    public static final String LineDepartment = "LineDepartment";
+
     // 进货价
     public static final String ShowInUP = "ShowInUP";
     // 零售价
