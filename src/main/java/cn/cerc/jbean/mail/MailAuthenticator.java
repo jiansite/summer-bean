@@ -1,6 +1,7 @@
 package cn.cerc.jbean.mail;
 
-import javax.mail.*;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
 
 public class MailAuthenticator extends Authenticator {
     private String userName = null;

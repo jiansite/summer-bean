@@ -2,8 +2,6 @@ package cn.cerc.jbean.core;
 
 import org.junit.Test;
 
-import cn.cerc.jbean.core.DataValidateException;
-
 public class DataValidateExceptioniTest {
 
     @Test(expected = DataValidateException.class)

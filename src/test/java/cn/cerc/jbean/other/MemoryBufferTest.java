@@ -6,9 +6,6 @@ import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cn.cerc.jbean.other.BufferType;
-import cn.cerc.jbean.other.MemoryBuffer;
-
 public class MemoryBufferTest {
     private static final Logger log = Logger.getLogger(MemoryBufferTest.class);
 

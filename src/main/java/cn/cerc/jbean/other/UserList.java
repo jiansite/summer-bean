@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 import cn.cerc.jbean.core.Application;
 import cn.cerc.jdb.cache.IMemcache;
 import cn.cerc.jdb.core.IHandle;
-import cn.cerc.jdb.mysql.SqlSession;
 import cn.cerc.jdb.mysql.SqlQuery;
+import cn.cerc.jdb.mysql.SqlSession;
 import net.sf.json.JSONObject;
 
 public class UserList implements IDataList {
