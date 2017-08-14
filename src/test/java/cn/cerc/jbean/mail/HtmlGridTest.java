@@ -1,10 +1,9 @@
 package cn.cerc.jbean.mail;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import cn.cerc.jbean.mail.HtmlGrid;
 import cn.cerc.jdb.core.DataSet;
 
 public class HtmlGridTest {

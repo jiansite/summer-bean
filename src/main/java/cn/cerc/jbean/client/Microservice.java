@@ -1,6 +1,5 @@
 package cn.cerc.jbean.client;
 
-import cn.cerc.jbean.client.RemoteService;
 import cn.cerc.jbean.core.Application;
 import cn.cerc.jbean.core.CustomService;
 import cn.cerc.jbean.core.IStatus;
