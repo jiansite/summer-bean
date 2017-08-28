@@ -153,4 +153,9 @@ public class ServerConfig implements IConfig {
 	public void setDefaultParams(Map<String, String> defaultParams) {
 		this.defaultParams = defaultParams;
 	}
+
+    @Override
+    public String getProperty(String key) {
+        return getProperty(key, null);
+    }
 }
