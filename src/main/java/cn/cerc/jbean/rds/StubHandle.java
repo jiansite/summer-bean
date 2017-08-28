@@ -105,4 +105,29 @@ public class StubHandle implements IHandle, AutoCloseable {
         this.getConnection().closeSession();
     }
 
+    @Override
+    public void closeConnections() {
+        
+    }
+
+    @Override
+    public void setProperty(String key, Object value) {
+        throw new RuntimeException("调用了未被实现的接口");
+    }
+
+    @Override
+    public boolean init(String bookNo, String userCode, String clientCode) {
+        throw new RuntimeException("调用了未被实现的接口");
+    }
+
+    @Override
+    public boolean init(String token) {
+        throw new RuntimeException("调用了未被实现的接口");
+    }
+
+    @Override
+    public boolean logon() {
+        return false;
+    }
+
 }
