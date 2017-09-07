@@ -19,7 +19,7 @@ import cn.cerc.jdb.mysql.SqlSession;
 public class UserList implements IDataList {
     private static final Logger log = Logger.getLogger(UserList.class);
     private IHandle handle;
-    private static Map<String, UserRecord> buff = new HashMap<>();
+    private Map<String, UserRecord> buff = new HashMap<>();
     private String buffKey;
     private static final int Version = 4;
 
@@ -142,7 +142,6 @@ public class UserList implements IDataList {
     public void clear() {
         IMemcache cache = Application.getMemcache();
         cache.delete(buffKey);
-        buff.clear();
     }
 
     /*
