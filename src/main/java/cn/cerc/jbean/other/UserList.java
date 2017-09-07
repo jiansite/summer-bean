@@ -1,31 +1,34 @@
 package cn.cerc.jbean.other;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import cn.cerc.jbean.core.Application;
 import cn.cerc.jdb.cache.IMemcache;
 import cn.cerc.jdb.core.IHandle;
 import cn.cerc.jdb.mysql.SqlQuery;
 import cn.cerc.jdb.mysql.SqlSession;
-import net.sf.json.JSONObject;
 
 public class UserList implements IDataList {
     private static final Logger log = Logger.getLogger(UserList.class);
     private IHandle handle;
-    private Map<String, UserRecord> buff = new HashMap<>();
+    private static Map<String, UserRecord> buff = new HashMap<>();
     private String buffKey;
-    private static final int buffVersion = 4;
+    private static final int Version = 4;
 
     public UserList(IHandle handle) {
         super();
         this.handle = handle;
         if (handle != null)
             buffKey = String.format("%d.%s.%s.%d", BufferType.getObject.ordinal(), handle.getCorpNo(),
-                    this.getClass().getName(), buffVersion);
+                    this.getClass().getName(), Version);
     }
 
     public String getNameDef(String key) {
@@ -57,16 +60,15 @@ public class UserList implements IDataList {
             return;
 
         // 从缓存中读取
+        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
         IMemcache cache = Application.getMemcache();
         String data = (String) cache.get(buffKey);
         if (data != null && !"".equals(data)) {
-            JSONObject json = JSONObject.fromObject(data);
-            Iterator<?> it = json.keys();
-            while (it.hasNext()) {
-                String key = (String) it.next();
-                JSONObject tmp = (JSONObject) json.get(key);
-                UserRecord val = (UserRecord) JSONObject.toBean(tmp, UserRecord.class);
-                buff.put(key, val);
+            Type type = new TypeToken<Map<String, UserRecord>>() {
+            }.getType();
+            Map<String, UserRecord> items = gson.fromJson(data, type);
+            for (String key : items.keySet()) {
+                buff.put(key, items.get(key));
             }
             log.debug(this.getClass().getName() + " 缓存成功！");
             return;
@@ -74,7 +76,6 @@ public class UserList implements IDataList {
 
         // 从数据库中读取
         SqlQuery ds = new SqlQuery(handle);
-
         ds.add("select ID_,CorpNo_,Code_,Name_,QQ_,Mobile_,SuperUser_,");
         ds.add("LastRemindDate_,EmailAddress_,RoleCode_,ProxyUsers_,Enabled_,DiyRole_ ");
         ds.add("from %s ", SystemTable.get(SystemTable.getUserInfo));
@@ -109,8 +110,7 @@ public class UserList implements IDataList {
         }
 
         // 存入到缓存中
-        JSONObject json = JSONObject.fromObject(buff);
-        cache.set(buffKey, json.toString());
+        cache.set(buffKey, gson.toJson(buff));
         log.debug(this.getClass().getName() + " 缓存初始化！");
     }
 
@@ -140,7 +140,9 @@ public class UserList implements IDataList {
 
     @Override
     public void clear() {
-        Application.getMemcache().delete(buffKey);
+        IMemcache cache = Application.getMemcache();
+        cache.delete(buffKey);
+        buff.clear();
     }
 
     /*
@@ -149,7 +151,7 @@ public class UserList implements IDataList {
     public void changeCorpNo(IHandle handle, String corpNo, String userCode, String roleCode)
             throws UserNotFindException {
         String buffKey = String.format("%d.%s.%s.%d", BufferType.getObject.ordinal(), corpNo, this.getClass().getName(),
-                buffVersion);
+                Version);
         Application.getMemcache().delete(buffKey);
         SqlQuery ds = new SqlQuery(handle);
 
@@ -159,7 +161,6 @@ public class UserList implements IDataList {
             throw new UserNotFindException(userCode);
 
         SqlSession conn = (SqlSession) handle.getProperty(SqlSession.sessionId);
-
         String sql = String.format("update %s set CorpNo_='%s',ShareAccount_=1 where Code_='%s'",
                 SystemTable.get(SystemTable.getUserInfo), corpNo, userCode);
         conn.execute(sql);
@@ -171,7 +172,4 @@ public class UserList implements IDataList {
         log.info(String.format("%s 已被切换到 corpNo=%s, roleCode=%s", userCode, corpNo, roleCode));
     }
 
-    public static void main(String[] args) {
-        // 此处代码已移至 delphi.utils.ResetAdmin类中了
-    }
 }
