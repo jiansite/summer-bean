@@ -100,6 +100,7 @@ public class BookOptions {
     public static final String BMDefaultDeptCode = "BMDefaultDeptCode";
     public static final String SupplyQuotationGrade = "SupplyQuotationGrade";
     public static final String EnableForecastMode = "EnableForecastMode";
+    public static final String EnableAutoFinishDA = "EnableAutoFinishDA";
 
     private static Map<String, String> items = new HashMap<>();
 
@@ -191,6 +192,7 @@ public class BookOptions {
         items.put(OnlineToOfflineArea, "网单代发区域等级范围设置（<font color=red>0、按省 1、按市 2、按县 3、指定市 4、指定县 5、指定镇</font>）");
         items.put(SupplyQuotationGrade, "是否开启采购报价单阶梯报价");
         items.put(EnableForecastMode, "是否开启销售预测管理模式");
+        items.put(EnableAutoFinishDA, "是否开启采购单自动结案");
 
         // 安全管控参数
         items.put(EnableReportSecurity, "启用安全报表控制，未确认的单据不允许打印报表");
