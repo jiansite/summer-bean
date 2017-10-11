@@ -16,6 +16,7 @@ public class ComplexColumn extends Column {
         this.fields = fields;
     }
 
+    @Override
     public String getValue() {
         Record record = this.getRecord();
         StringBuffer buff = new StringBuffer();
