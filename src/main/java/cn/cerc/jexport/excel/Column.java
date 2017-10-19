@@ -7,6 +7,8 @@ public abstract class Column {
     private String code;
     // 对应数据集字段标题
     private String name;
+    // 列宽度
+    private int width;
     // 数据源
     private Record record;
 
@@ -21,16 +23,18 @@ public abstract class Column {
         return code;
     }
 
-    public void setCode(String code) {
+    public Column setCode(String code) {
         this.code = code;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Column setName(String name) {
         this.name = name;
+        return this;
     }
 
     public Record getRecord() {
@@ -39,5 +43,14 @@ public abstract class Column {
 
     public void setRecord(Record record) {
         this.record = record;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Column setWidth(int width) {
+        this.width = width;
+        return this;
     }
 }
