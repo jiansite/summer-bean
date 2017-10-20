@@ -3,7 +3,6 @@ package cn.cerc.jbean.other;
 import cn.cerc.jbean.cache.Buffer;
 
 public class MemoryBuffer extends Buffer implements AutoCloseable {
-    // private static final Logger log = Logger.getLogger(MemoryBuffer.class);
 
     public MemoryBuffer(BufferType bt, String... keys) {
         super();

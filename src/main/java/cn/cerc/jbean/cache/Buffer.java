@@ -25,9 +25,4 @@ public class Buffer extends CacheQuery {
         setKey(str.toString());
     }
 
-    @Deprecated // 请改使用post函数
-    public final void update() {
-        post();
-    }
-
 }
