@@ -3,6 +3,9 @@ package cn.cerc.jexport.excel;
 import cn.cerc.jdb.core.Record;
 
 public abstract class Column {
+	public static final String LEFT = "left";
+	public static final String RIGHT = "right";
+	public static final String CENTER = "center";
 	// 对应数据集字段名
 	private String code;
 	// 对应数据集字段标题
@@ -13,6 +16,16 @@ public abstract class Column {
 	private String align;
 	// 数据源
 	private Record record;
+
+	public Column() {
+
+	}
+
+	public Column(String code, String name, int width) {
+		this.code = code;
+		this.name = name;
+		this.width = width;
+	}
 
 	// 取得数据
 	public abstract Object getValue();
