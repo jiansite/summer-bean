@@ -24,6 +24,7 @@ public class UserOptions {
     public static final String ShowAllMake = "ShowAllMake";
     public static final String SetTBSortAgain = "SetTBSortAgain";
     public static final String AllowUpdateBCLogistics = "AllowUpdateBCLogistics";
+    public static final String AllowChangeNumOriUPFree = "AllowChangeNumOriUPFree";
     // 导出参数
     public static final String AllowExportInUP = "AllowExportInUP";
     public static final String AllowExportOutUP = "AllowExportOutUP";
@@ -90,6 +91,7 @@ public class UserOptions {
         option.put(ShowAllMake, "允许操作其他生产管理员建立的生产计划");
         option.put(SetTBSortAgain, "在批发、零售销售时，扫描条码添加明细后，商品倒序排序（最新扫描的显示在最上方）");
         option.put(AllowUpdateBCLogistics, "允许手工修改销售单收货地址");
+        option.put(AllowChangeNumOriUPFree, "允许自由变更采购单价和数量（不开启则只允许变小不允许变大）");
     }
 
     public static String getOption(String key) {
