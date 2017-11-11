@@ -20,7 +20,6 @@ public class UserOptions {
     public static final String AllowViewAllUserLogs = "AllowViewAllUserLogs";
     public static final String AllowReportDesign = "AllowReportDesign";
     public static final String AllowSystemBaseDelete = "AllowSystemBaseDelete";
-    public static final String AllowUseOtherClient = "AllowUseOtherClient";
     public static final String ShowAllMake = "ShowAllMake";
     public static final String SetTBSortAgain = "SetTBSortAgain";
     public static final String AllowUpdateBCLogistics = "AllowUpdateBCLogistics";
@@ -85,7 +84,6 @@ public class UserOptions {
         option.put(AllowSystemBaseDelete, "允许删除系统基本资料(使用系统数据删除功能)");
         option.put(AllowMaxDiscount, "用户零售时最大允许折扣(为零时不管控)");
         option.put(AllowMaxDiscountPrice, "业务员打折时最大允许优惠金额(为-1默认不管控)");
-        option.put(AllowUseOtherClient, "允许使用除地藤客户端以外的其他设备登录系统，包括手机、微信、浏览器等");
         option.put(DisableRegNotTodayAPAR, "不允许补登记非当天的登记收、付款单据");
         option.put(AllowBCMaxDiscount, "用户批发销售时最大允许折扣(为零时不管控)");
         option.put(ShowAllMake, "允许操作其他生产管理员建立的生产计划");
