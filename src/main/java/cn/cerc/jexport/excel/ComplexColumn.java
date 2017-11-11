@@ -14,9 +14,12 @@ public class ComplexColumn extends Column {
 
     public ComplexColumn(String[] code, String name, int width) {
         super();
+        StringBuffer strBuff = new StringBuffer();
         for (String field : code) {
             fields.add(field);
+            strBuff.append(field);
         }
+        this.setCode(strBuff.toString());
         this.setName(name);
         this.setWidth(width);
     }
