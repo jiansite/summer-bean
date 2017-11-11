@@ -11,55 +11,55 @@ import org.apache.log4j.Logger;
 import cn.cerc.jdb.core.IConfig;
 
 public class LocalConfig implements IConfig {
-	private static final Logger log = Logger.getLogger(ServerConfig.class);
-	private static Properties properties = new Properties();
-	private static LocalConfig instance;
+    private static final Logger log = Logger.getLogger(ServerConfig.class);
+    private static Properties properties = new Properties();
+    private static LocalConfig instance;
 
-	public LocalConfig() {
-		if (instance != null) {
-			throw new RuntimeException("instance is not null");
-		}
-		instance = this;
-		String confFile = System.getProperty("user.home") + System.getProperty("file.separator")
-				+ "summer-application.properties";
-		try {
-			File file2 = new File(confFile);
-			if (file2.exists()) {
-				properties.load(new FileInputStream(confFile));
-				log.info("read properties from : " + confFile);
-			} else {
-				log.error("not find properties: " + confFile);
-			}
-		} catch (FileNotFoundException e) {
-			log.error("The settings file '" + confFile + "' does not exist.");
-		} catch (IOException e) {
-			log.error("Failed to load the settings from the file: " + confFile);
-		}
-	}
+    public LocalConfig() {
+        if (instance != null) {
+            log.error("LocalConfig instance is not null");
+        }
+        instance = this;
+        String confFile = System.getProperty("user.home") + System.getProperty("file.separator")
+                + "summer-application.properties";
+        try {
+            File file2 = new File(confFile);
+            if (file2.exists()) {
+                properties.load(new FileInputStream(confFile));
+                log.info("read properties from : " + confFile);
+            } else {
+                log.error("not find properties: " + confFile);
+            }
+        } catch (FileNotFoundException e) {
+            log.error("The settings file '" + confFile + "' does not exist.");
+        } catch (IOException e) {
+            log.error("Failed to load the settings from the file: " + confFile);
+        }
+    }
 
-	@Override
-	public String getProperty(String key, String def) {
-		String result = null;
-		if (properties != null) {
-			result = properties.getProperty(key);
-		}
-		return result != null ? result : def;
-	}
+    @Override
+    public String getProperty(String key, String def) {
+        String result = null;
+        if (properties != null) {
+            result = properties.getProperty(key);
+        }
+        return result != null ? result : def;
+    }
 
-	@Override
-	public String getProperty(String key) {
-		return getProperty(key, null);
-	}
+    @Override
+    public String getProperty(String key) {
+        return getProperty(key, null);
+    }
 
-	public static LocalConfig getInstance() {
-		if (instance == null) {
-			new LocalConfig();
-		}
-		return instance;
-	}
+    public static LocalConfig getInstance() {
+        if (instance == null) {
+            new LocalConfig();
+        }
+        return instance;
+    }
 
-	public static void main(String[] args) {
-		LocalConfig config = new LocalConfig();
-		System.out.println(config.getProperty("key"));
-	}
+    public static void main(String[] args) {
+        LocalConfig config = new LocalConfig();
+        System.out.println(config.getProperty("key"));
+    }
 }

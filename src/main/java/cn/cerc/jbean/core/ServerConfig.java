@@ -12,12 +12,12 @@ import org.apache.log4j.Logger;
 import cn.cerc.jdb.core.IConfig;
 
 public class ServerConfig implements IConfig {
+    private static final Logger log = Logger.getLogger(ServerConfig.class);
     public static final String TaskServiceEnabled = "task.service";
     public static final String TaskServiceToken = "task.token";
     public static final String AdminMobile = "admin.mobile";
     public static final String AdminEmail = "admin.email";
 
-    private static final Logger log = Logger.getLogger(ServerConfig.class);
     private static ServerConfig instance;
     private static Properties properties = new Properties();
     private Map<String, String> defaultParams = new HashMap<>();
@@ -46,7 +46,7 @@ public class ServerConfig implements IConfig {
 
     public ServerConfig() {
         if (instance != null) {
-            throw new RuntimeException("instance is not null");
+            log.error("ServerConfig instance is not null");
         }
         instance = this;
     }
