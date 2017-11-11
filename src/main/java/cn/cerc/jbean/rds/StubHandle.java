@@ -107,7 +107,7 @@ public class StubHandle implements IHandle, AutoCloseable {
 
     @Override
     public void closeConnections() {
-        
+
     }
 
     @Override
