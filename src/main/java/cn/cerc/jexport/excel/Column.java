@@ -17,6 +17,9 @@ public abstract class Column {
     // 数据源
     private Record record;
 
+    // 标记
+    private int tag = 0;
+
     public Column() {
 
     }
@@ -75,6 +78,15 @@ public abstract class Column {
 
     public Column setAlign(String align) {
         this.align = align;
+        return this;
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public Column setTag(int tag) {
+        this.tag = tag;
         return this;
     }
 }
