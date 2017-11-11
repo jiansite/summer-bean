@@ -12,12 +12,12 @@ import org.apache.log4j.Logger;
 import cn.cerc.jdb.core.IConfig;
 
 public class ServerConfig implements IConfig {
+    private static final Logger log = Logger.getLogger(ServerConfig.class);
     public static final String TaskServiceEnabled = "task.service";
     public static final String TaskServiceToken = "task.token";
     public static final String AdminMobile = "admin.mobile";
     public static final String AdminEmail = "admin.email";
 
-    private static final Logger log = Logger.getLogger(ServerConfig.class);
     private static ServerConfig instance;
     private static Properties properties = new Properties();
     private Map<String, String> defaultParams = new HashMap<>();
@@ -44,9 +44,17 @@ public class ServerConfig implements IConfig {
         }
     }
 
+    public ServerConfig() {
+        if (instance != null) {
+            log.error("ServerConfig instance is not null");
+        }
+        instance = this;
+    }
+
     public static ServerConfig getInstance() {
-        if (instance == null)
-            instance = new ServerConfig();
+        if (instance == null) {
+            new ServerConfig();
+        }
         return instance;
     }
 
@@ -167,8 +175,13 @@ public class ServerConfig implements IConfig {
     @Override
     public String getProperty(String key, String def) {
         String result = null;
-        if (properties != null)
+        if (properties != null) {
             result = properties.getProperty(key);
+            if (result == null) {
+                LocalConfig config = LocalConfig.getInstance();
+                result = config.getProperty(key, def);
+            }
+        }
         return result != null ? result : def;
     }
 

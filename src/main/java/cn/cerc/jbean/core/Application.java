@@ -65,7 +65,7 @@ public class Application {
 
     public static IConfig getServerConfig() {
         if (serverConfig == null)
-            serverConfig = new ServerConfig();
+            serverConfig = ServerConfig.getInstance();
         return serverConfig;
     }
 
