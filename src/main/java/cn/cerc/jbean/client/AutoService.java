@@ -96,7 +96,7 @@ public class AutoService implements IHandle, AutoCloseable {
 
     @Override
     public void closeConnections() {
-        
+
     }
 
     @Override
