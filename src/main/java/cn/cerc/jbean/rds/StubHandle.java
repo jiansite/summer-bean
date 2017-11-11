@@ -75,25 +75,25 @@ public class StubHandle implements IHandle, AutoCloseable {
         Object obj = handle.getProperty(key);
         if (obj == null && SqlSession.sessionId.equals(key)) {
             SqlConnection conn = new SqlConnection();
-            conn.setConfig(new ServerConfig());
+            conn.setConfig(ServerConfig.getInstance());
             obj = conn.getSession();
             handle.setProperty(key, obj);
         }
         if (obj == null && CacheSession.sessionId.equals(key)) {
             CacheConnection conn = new CacheConnection();
-            conn.setConfig(new ServerConfig());
+            conn.setConfig(ServerConfig.getInstance());
             obj = conn.getSession();
             handle.setProperty(key, obj);
         }
         if (obj == null && QueueSession.sessionId.equals(key)) {
             QueueConnection conn = new QueueConnection();
-            conn.setConfig(new ServerConfig());
+            conn.setConfig(ServerConfig.getInstance());
             obj = conn.getSession();
             handle.setProperty(key, obj);
         }
         if (obj == null && JiguangSession.sessionId.equals(key)) {
             JiguangConnection conn = new JiguangConnection();
-            conn.setConfig(new ServerConfig());
+            conn.setConfig(ServerConfig.getInstance());
             obj = conn.getSession();
             handle.setProperty(key, obj);
         }
