@@ -158,7 +158,7 @@ public class ServerConfig implements IConfig {
         return getInstance().getProperty(TaskServiceToken, null);
     }
 
-    public boolean enableTaskService() {
+    public static boolean enableTaskService() {
         return "1".equals(getInstance().getProperty(TaskServiceEnabled, null));
     }
 
