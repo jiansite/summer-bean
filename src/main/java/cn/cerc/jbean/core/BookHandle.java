@@ -48,7 +48,7 @@ public class BookHandle implements IHandle {
 
     @Override
     public void closeConnections() {
-        
+
     }
 
     @Override
