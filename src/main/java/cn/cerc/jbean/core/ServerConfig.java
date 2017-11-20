@@ -10,7 +10,6 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 import cn.cerc.jdb.core.IConfig;
-import cn.cerc.jdb.other.utils;
 
 public class ServerConfig implements IConfig {
     private static final Logger log = Logger.getLogger(ServerConfig.class);
@@ -76,9 +75,9 @@ public class ServerConfig implements IConfig {
             return 0;
     }
 
-    public static int getDocLevel() {
-        String level = getInstance().getProperty("docs.service", "0");
-        return utils.strToIntDef(level, 0);
+    public static boolean openDocService() {
+        String docService = getInstance().getProperty("docs.service", "0");
+        return "1".equals(docService);
     }
 
     @Deprecated
