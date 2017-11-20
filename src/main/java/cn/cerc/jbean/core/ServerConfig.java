@@ -75,11 +75,6 @@ public class ServerConfig implements IConfig {
             return 0;
     }
 
-    public static boolean openDocService() {
-        String docService = getInstance().getProperty("docs.service", "0");
-        return "1".equals(docService);
-    }
-
     @Deprecated
     public static int getTimeoutWarn() {
         String str = getInstance().getProperty("timeout.warn", "60");
@@ -165,6 +160,10 @@ public class ServerConfig implements IConfig {
 
     public static boolean enableTaskService() {
         return "1".equals(getInstance().getProperty(TaskServiceEnabled, null));
+    }
+
+    public static boolean enableDocService() {
+        return "1".equals(getInstance().getProperty("docs.service", "0"));
     }
 
     @Deprecated
