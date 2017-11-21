@@ -162,6 +162,10 @@ public class ServerConfig implements IConfig {
         return "1".equals(getInstance().getProperty(TaskServiceEnabled, null));
     }
 
+    public static boolean enableDocService() {
+        return "1".equals(getInstance().getProperty("docs.service", "0"));
+    }
+
     @Deprecated
     public Map<String, String> getDefaultParams() {
         return defaultParams;
