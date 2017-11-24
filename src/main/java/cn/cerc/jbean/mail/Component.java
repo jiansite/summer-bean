@@ -30,13 +30,5 @@ public class Component {
     private void addComponent(Component child) {
         this.components.add(child);
     }
-    //
-    // public ArrayList<Component> getComponents() {
-    // return components;
-    // }
-    //
-    // public int getComponentCount() {
-    // return components.size();
-    // }
 
 }
