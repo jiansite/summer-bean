@@ -115,17 +115,22 @@ public class Application {
 
         init();
 
-        if (formItems == null)
-            formItems = new FileSystemXmlApplicationContext(formFile);
-
-        if (!formItems.containsBean(formId))
+        formItems = getFormItems();
+        if (!formItems.containsBean(formId)) {
             throw new RuntimeException(String.format("form %s not find!", formId));
+        }
 
         IForm form = formItems.getBean(formId, IForm.class);
         form.setRequest(req);
         form.setResponse(resp);
 
         return form;
+    }
+
+    public static ApplicationContext getFormItems() {
+        if (formItems == null)
+            formItems = new FileSystemXmlApplicationContext(formFile);
+        return formItems;
     }
 
     public static ApplicationContext getServices() {
