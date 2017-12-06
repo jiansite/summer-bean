@@ -40,7 +40,7 @@ public class AbstractHandle implements IHandle {
 
     @Override
     public String getUserName() {
-        return getUserCode();
+        return handle.getUserName();
     }
 
     @Override

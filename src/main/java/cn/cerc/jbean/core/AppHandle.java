@@ -24,7 +24,7 @@ public class AppHandle extends AbstractHandle implements AutoCloseable {
 
     @Override
     public String getUserName() {
-        return handle.getUserCode();
+        return handle.getUserName();
     }
 
     @Override
