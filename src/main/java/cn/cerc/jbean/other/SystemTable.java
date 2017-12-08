@@ -39,8 +39,10 @@ public class SystemTable {
     // 运营商帐套代码
     public static final String ManageBook = "000000";
 
-    // 多语言数据字典
+    // 多语言数据字典: 旧版本
     public static final String getLangDict = "s_LangDict";
+    // 多语言数据字典: 新版本
+    public static final String getLanguage = "s_Language";
 
     public static String get(String tableCode) {
         return Application.getAppConfig().getParam(tableCode, tableCode);
