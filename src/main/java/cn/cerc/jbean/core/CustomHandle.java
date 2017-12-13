@@ -29,6 +29,7 @@ public class CustomHandle implements IHandle, AutoCloseable {
         params.put(Application.roleCode, "");
         params.put(Application.bookNo, "");
         params.put(Application.deviceLanguage, Application.LangageDefault);
+        log.debug("new CustomHandle");
     }
 
     @Override
