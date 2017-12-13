@@ -26,6 +26,8 @@ public class ServerConfig implements IConfig {
     public static final int appTest = 1;
     public static final int appBeta = 2;
     public static final int appRelease = 3;
+    // 是否为debug状态
+    private int debug = -1;
 
     static {
         String confFile = "/application.properties";
@@ -192,5 +194,16 @@ public class ServerConfig implements IConfig {
     @Override
     public String getProperty(String key) {
         return getProperty(key, null);
+    }
+
+    /**
+     * 
+     * @return 返回当前是否为debug状态
+     */
+    public boolean isDebug() {
+        if (debug == -1) {
+            debug = "1".equals(this.getProperty("debug", "0")) ? 1 : 0;
+        }
+        return debug == 1;
     }
 }
