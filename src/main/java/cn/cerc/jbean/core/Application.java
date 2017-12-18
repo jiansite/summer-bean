@@ -169,13 +169,13 @@ public class Application {
 
     public static String getLangage() {
         init();
-        String lang = getServerConfig().getProperty("langage");
+        String lang = getServerConfig().getProperty(deviceLanguage);
         if (lang == null || "".equals(lang) || LangageDefault.equals(lang))
             return LangageDefault;
         else if ("en".equals(lang))
             return lang;
         else
-            throw new RuntimeException("not support langage: " + lang);
+            throw new RuntimeException("not support language: " + lang);
     }
 
     public static void main(String[] args) {
