@@ -39,8 +39,12 @@ public interface IForm {
     // 输出页面（支持jsp、reddirect、json等）
     public IPage execute() throws Exception;
 
+    // 取得权限代码
+    public String getPermission();
+
     // 设备安全检查通过否，为true时需要进行进一步授权
     default public boolean passDevice() {
         return false;
     }
+
 }
