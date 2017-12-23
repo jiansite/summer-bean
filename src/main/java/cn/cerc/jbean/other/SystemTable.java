@@ -35,6 +35,8 @@ public class SystemTable {
     public static final String getAppLogs = "AppServiceLogs";
     // 记录网页被调用的历史
     public static final String getPageLogs = "WebPageLogs";
+    // 记录在线用户数
+    public static final String getOnlineUsers = "onlineusers";
 
     // 运营商帐套代码
     public static final String ManageBook = "000000";
