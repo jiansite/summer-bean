@@ -33,6 +33,7 @@ public class Template {
     private float marginRight = 36;
     private float marginTop = 36;
     private float marginBottom = 36;
+    private boolean broadwise = false; // 是否横向打印
     /**
      * 定义输出设备，默认为屏幕
      */
@@ -137,7 +138,11 @@ public class Template {
         if (document == null) {
             // document = new Document(PageSize.A4.rotate());
             // 分辨率是72像素/英寸，A4纸的尺寸的图像的像素是595×842
-            document = new Document(createRectangle(pageWidth, pageHeight), marginLeft, marginRight, marginTop,
+            Rectangle rectangle = createRectangle(pageWidth, pageHeight);
+            if (broadwise) {
+                rectangle = rectangle.rotate();
+            }
+            document = new Document(rectangle, marginLeft, marginRight, marginTop,
                     marginBottom);
         }
         return document;
@@ -222,4 +227,13 @@ public class Template {
     public void setHeaderFooter(ReportHeaderFooter headerFooter) {
         this.headerFooter = headerFooter;
     }
+
+    public boolean isBroadwise() {
+        return broadwise;
+    }
+
+    public void setBroadwise(boolean broadwise) {
+        this.broadwise = broadwise;
+    }
+
 }
