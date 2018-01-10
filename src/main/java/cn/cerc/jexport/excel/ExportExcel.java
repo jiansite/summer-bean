@@ -2,6 +2,7 @@ package cn.cerc.jexport.excel;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,7 +56,7 @@ public class ExportExcel {
 
         // 下面是对中文文件名的处理
         response.setCharacterEncoding("UTF-8");// 设置相应内容的编码格式
-        String fname = new String(template.getFileName().getBytes(), "ISO-8859-1");
+        String fname = URLEncoder.encode(template.getFileName(), "UTF-8");
         response.setHeader("Content-Disposition", "attachment;filename=" + fname + ".xls");
         response.setContentType("application/msexcel");// 定义输出类型
 
