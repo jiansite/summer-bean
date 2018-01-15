@@ -9,7 +9,7 @@ import cn.cerc.jdb.mysql.BatchScript;
 
 public class HistoryRecord {
     private IHandle handle;
-    private StringBuffer content = new StringBuffer();
+    private StringBuilder content = new StringBuilder();
     private HistoryLevel level = HistoryLevel.General;
 
     public HistoryRecord() {
@@ -72,7 +72,7 @@ public class HistoryRecord {
             mth = 0;
         }
         BatchScript bs = new BatchScript(handle);
-        bs.add("insert into %s (CorpNo_,Level_,Log_,AppUser_,UpdateKey_) values (N'%s',%d,N'%s',N'%s',N'%s')",
+        bs.add("insert into %s (CorpNo_,Level_,Log_,AppUser_,UpdateKey_) values ('%s',%d,'%s','%s','%s')",
                 SystemTable.get(SystemTable.getUserLogs), corpNo, mth, Utils.safeString(copy(log, 1, 80)), userCode,
                 newGuid());
         bs.exec();
