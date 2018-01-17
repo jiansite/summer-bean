@@ -51,6 +51,9 @@ public class UserOptions {
     // 设置我的喜好/默认部门
     public static final String LineDepartment = "LineDepartment";
 
+    // 设置我的喜好/首页菜单为常用菜单
+    public static final String ShowUserMenu = "ShowUserMenu";
+
     // 进货价
     public static final String ShowInUP = "ShowInUP";
     // 零售价
