@@ -53,11 +53,6 @@ public class Application {
         return appConfig;
     }
 
-    /**
-     * 返回application.xml中的配置，原函数名为：getConfig
-     * 
-     * @return
-     */
     public static AppConfig getAppConfig() {
         init();
         return appConfig;
