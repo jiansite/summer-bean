@@ -12,7 +12,10 @@ public class NumberColumn extends Column {
 
     @Override
     public boolean validate(int row, int col, String value) {
-        String result = String.valueOf(Math.abs(Double.parseDouble(value)));
+        String result = "";
+        if (!"".equals(value)) {
+            result = String.valueOf(Math.abs(Double.parseDouble(value)));
+        }
         return cn.cerc.jdb.other.utils.isNumeric(result);
     }
 }
