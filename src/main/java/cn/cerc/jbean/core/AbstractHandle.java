@@ -62,4 +62,5 @@ public class AbstractHandle implements IHandle {
     public boolean logon() {
         return false;
     }
+
 }

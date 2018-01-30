@@ -123,18 +123,22 @@ public class CustomHandle implements IHandle, AutoCloseable {
 
     @Override
     public boolean logon() {
-        if (this.getProperty(Application.token) == null)
+        if (this.getProperty(Application.token) == null) {
             return false;
+        }
         String corpNo = this.getCorpNo();
-        if (corpNo == null || "".equals(corpNo))
+        if (corpNo == null || "".equals(corpNo)) {
             return false;
+        }
         return true;
     }
 
     @Override
     public Object getProperty(String key) {
-        if (key == null)
+        if (key == null) {
             return this;
+        }
+
         Object result = params.get(key);
         if (result == null && !params.containsKey(key) && connections.containsKey(key)) {
             IConnection conn = connections.get(key);

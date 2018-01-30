@@ -74,7 +74,7 @@ public class AppConfig implements IConfig {
      * @return 在需要用户输入帐号、密码进行登录时的显示
      */
     public String getJspLoginFile() {
-        return getParam("jspLoginFile", "common/login.jsp");
+        return getParam("jspLoginFile", "common/FrmLogin.jsp");
     }
 
     public String getParam(String key, String def) {
