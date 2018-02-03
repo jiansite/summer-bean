@@ -103,6 +103,7 @@ public class BookOptions {
     public static final String EnableAutoFinishDA = "EnableAutoFinishDA";
     public static final String EnableABQualityManage = "EnableABQualityManage";
     public static final String EnableWorkPieceToOP = "EnableWorkPieceToOP";
+    public static final String StudentFileSupCorpNo = "StudentFileSupCorpNo";
 
     private static Map<String, String> items = new HashMap<>();
 
@@ -206,6 +207,7 @@ public class BookOptions {
         // 其它参数
         items.put(ZZTPY_VERSION, "启动【郑州太平洋】专用功能项");
         items.put(AllowMallShare, "是否开放在线商城（允许所有人查看本公司商品信息）");
+        items.put(StudentFileSupCorpNo, "设置互联上游账套（助学计划）");
     }
 
     public BookOptions(IHandle handle) {
