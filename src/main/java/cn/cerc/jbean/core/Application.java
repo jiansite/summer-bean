@@ -23,6 +23,8 @@ public class Application {
     private static String serviceFile = "classpath:app-services.xml";
     private static ApplicationContext formItems;
     private static String formFile = "classpath:app-forms.xml";
+    private static ApplicationContext reportItems;
+    private static String reportFile = "classpath:app-report.xml";
 
     // Tomcat JSESSION.ID
     public static final String sessionId = "sessionId";
@@ -126,6 +128,12 @@ public class Application {
         if (formItems == null)
             formItems = new FileSystemXmlApplicationContext(formFile);
         return formItems;
+    }
+
+    public static ApplicationContext getReportItems() {
+        if (reportItems == null)
+            reportItems = new FileSystemXmlApplicationContext(reportFile);
+        return reportItems;
     }
 
     public static ApplicationContext getServices() {
