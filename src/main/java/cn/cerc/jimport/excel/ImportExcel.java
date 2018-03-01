@@ -4,6 +4,7 @@ import static cn.cerc.jdb.other.utils.formatFloat;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +50,7 @@ public class ImportExcel extends ImportFile {
         template = this.getTemplate();
         // 下面是对中文文件名的处理
         response.setCharacterEncoding("UTF-8");// 设置相应内容的编码格式
-        String fname = new String((template.getFileName() + "-导入模版").getBytes(), "ISO-8859-1");
+        String fname = URLEncoder.encode(template.getFileName(), "UTF-8");
         response.setHeader("Content-Disposition", "attachment;filename=" + fname + ".xls");
         response.setContentType("application/msexcel");// 定义输出类型
 
