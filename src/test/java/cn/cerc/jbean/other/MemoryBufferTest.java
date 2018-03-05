@@ -12,17 +12,17 @@ public class MemoryBufferTest {
     @Test
     @Ignore
     public void test_connect() {
-        try (MemoryBuffer rec = new MemoryBuffer(BufferType.test, "test");) {
-            if (rec.Connected()) {
-                if (rec.isNull()) {
-                    rec.setField("Code_", "1000");
-                    rec.setField("Name_", "Jason");
-                    rec.setField("num", 0);
+        try (MemoryBuffer buff = new MemoryBuffer(BufferType.test, "test");) {
+            if (buff.Connected()) {
+                if (buff.isNull()) {
+                    buff.setField("Code_", "1000");
+                    buff.setField("Name_", "Jason");
+                    buff.setField("num", 0);
                     log.info("Init memcached.");
                 } else {
                     log.info("read memcached.");
                 }
-                rec.setField("num", rec.getInt("num") + 1);
+                buff.setField("num", buff.getInt("num") + 1);
             } else {
                 assertEquals("联系不上 Memcahced 服务器！", "ok", "erro");
             }
@@ -40,7 +40,6 @@ public class MemoryBufferTest {
             assertEquals(data, buff.getString("A"));
         }
         MemoryBuffer.delete(BufferType.test, "test");
-        ;
         try (MemoryBuffer buff = new MemoryBuffer(BufferType.test, "test");) {
             assertEquals(null, buff.getRecord().getField("A"));
         }
